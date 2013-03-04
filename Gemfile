@@ -1,38 +1,49 @@
+# Source rails will look to for gemfiles 
+# that need installed.
 source 'https://rubygems.org'
 
+# Ensures the corrrect version of rails 
+# is used.
 gem 'rails', '3.2.12'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+# Group that is only used when in
+# development and test environments
+group :development, :test do
+	# Development and test databse management
+	# system.
+	gem 'sqlite3', '1.3.5'
 
-gem 'sqlite3'
-
+	# Test suite for thei application
+	gem 'rspec-rails', '2.11.0'	
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+	# Gem for SCSS and CSS files
+	gem 'sass-rails', '3.2.5'
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+	# Gem for coffescripts
+	gem 'coffee-rails', '3.2.2'
 
-  gem 'uglifier', '>= 1.0.3'
+	# Gem for minimizing production files
+	gem 'uglifier', '1.2.3'
 end
 
-gem 'jquery-rails'
+# Gem for jquery
+gem 'jquery-rails', '2.0.2'
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+# Group of gems that only runs when rails
+# is in test environments
+group :test do
+	# Human like language for testing
+	gem 'capybara', '1.1.2'
+end
 
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
+# Group of gems that only runs whe rails
+# is in production environments
+group :production do
+	# Databse management system for
+	# production environment (heroku)
+	gem 'pg', '0.12.2'
+end
