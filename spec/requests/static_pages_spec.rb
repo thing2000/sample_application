@@ -1,11 +1,22 @@
+# Gives this file access to spec_helper.rb
 require 'spec_helper'
 
-describe "StaticPages" do
-  describe "GET /static_pages" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get static_pages_index_path
-      response.status.should be(200)
-    end
-  end
+# Describe that static_pages are being tested
+# Displays on the screen when failure occurs
+describe "Static pages" do
+	# Describes that home page is being tested
+	# Will be displayed in the event of a failed test
+	describe "Home page" do
+		
+		# Describe what is being tested about home page
+		it "should have the content 'Sample App'" do
+			
+			# Test simulates a user visiting the site
+			visit '/static_pages/home'
+
+			# Test looks within the page for
+			# the content Sample App.
+			page.should have_content('Sample App')
+		end
+	end
 end
