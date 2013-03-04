@@ -20,4 +20,21 @@ describe "Static pages" do
 
 		end
 	end
+
+	# Describe that help page is being tested
+	# Will be displayed in the event of a failed test
+	describe "- Help page" do
+
+		# Describes what is being tested about the 
+		# help page
+		it "- Should have the content 'Sample App'" do
+			
+			# Test simulates a user visiting the site
+			visit '/static_pages/help'
+
+			# Text looks at the content of the help
+			# page to see if is has content Sample App
+			page.should have_content('Sample App')
+		end
+	end
 end
