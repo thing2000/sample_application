@@ -7,4 +7,8 @@ SampleApplication::Application.routes.draw do
   # static_page_controller.
   get "static_pages/help"
 
+  # Route for the about action in the
+  # static_page_controller
+  get "static_pages/about"
+
 end
