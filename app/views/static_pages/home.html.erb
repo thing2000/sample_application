@@ -1,17 +1,15 @@
+<% # Declare variavle title and assigne it value Home %>
+<% # This variable will be avaliable for application %>
+<% # layout template. %>
 <% provide(:title, 'Home') %>
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>
-      Ruby on Rails Tutorial Sample App | <%= yield(:title) %>
-    </title>
-  </head>
-  <body>
-    <h1>Sample App</h1>
-    <p>
-      This is the home page for the
-      <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-      sample application.
-    </p>
-  </body>
-</html>
+
+<% # The body will be placed inside the applicatin %>
+<% # layout template to make complete page. %> 
+<body>
+  <h1>Sample App</h1>
+  <p>
+    This is the home page for the
+    <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
+    sample application.
+  </p>
+</body>

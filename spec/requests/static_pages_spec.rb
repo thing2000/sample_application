@@ -4,6 +4,11 @@ require 'spec_helper'
 # Describe that static_pages are being tested.
 # Displays on the screen when failure occurs.
 describe "Static pages" do
+
+	# Create variable base_title and assigne default page title
+	# This will be used throughout the test 
+	let(:base_title) { "Ruby on Rails Tutorial Sample App" }
+	
 	# Describes that home page is being tested.
 	# Will be displayed in the event of a failed test.
 	describe "- Home page" do
@@ -29,7 +34,7 @@ describe "Static pages" do
 			# Test to see if page has title and that
 			# the title contains the proper format.
 			page.should have_selector('title', :text => 
-				"Ruby on Rails Tutorial Sample App | Home")
+				"#{base_title} | Home")
 		end
 	end
 
@@ -53,13 +58,13 @@ describe "Static pages" do
 		# Test to see if help page has right title.
 		it "- Should have the right title" do
 
-			# Simulate user visiting the home page.
+			# Simulate user visiting the help page.
 			visit '/static_pages/help'
 
 			# Test to see if page has title and that
 			# the title contains the proper format.
 			page.should have_selector('title', :text => 
-				"Ruby on Rails Tutorial Sample App | Help")
+				"#{base_title} | Help")
 		end
 	end
 
@@ -83,13 +88,43 @@ describe "Static pages" do
 		# Test to see if about page has right title.
 		it "- Should have the right title" do
 
-			# Simulate user visiting the home page.
+			# Simulate user visiting the about page.
 			visit '/static_pages/about'
 
 			# Test to see if page has title and that
 			# the title contains the proper format.
 			page.should have_selector('title', :text => 
-				"Ruby on Rails Tutorial Sample App | About Us")
+				"#{base_title} | About Us")
+		end
+	end
+
+	# Describe that the contact page is being tested.
+	# Will be displayed if test fails.
+	describe "- Contact page" do
+
+		# Describes what is being tested about the
+		# contact page.
+		it "- Should have the content 'Contact'" do
+
+			# Test simulates a user visiting the site.
+			visit '/static_pages/contact'
+
+			# Test looks at the h1 of the page for
+			# the content Contact.
+			page.should have_selector('h1', :text => 
+				'Contact')
+		end
+
+		# Test to see if about page has right title.
+		it "- Should have the right title" do
+
+			# Simulate user visiting the contact page.
+			visit '/static_pages/contact'
+
+			# Test to see if page has title and that
+			# the title contains the proper format.
+			page.should have_selector('title', :text => 
+				"#{base_title} | Contact")
 		end
 	end
 end

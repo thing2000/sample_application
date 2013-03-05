@@ -11,4 +11,7 @@ SampleApplication::Application.routes.draw do
   # static_page_controller
   get "static_pages/about"
 
+  # Route for the contact action in the
+  #static_page_controller
+  get "static_pages/contact"
 end
