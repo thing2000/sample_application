@@ -14,10 +14,22 @@ describe "Static pages" do
 			# Test simulates a user visiting the site.
 			visit '/static_pages/home'
 
-			# Test looks within the page for
+			# Test looks at the h1 of the page for
 			# the content Sample App.
-			page.should have_content('Sample App')	
+			page.should have_selector('h1', :text => 
+				'Sample App')	
+		end
 
+		# Test to see if home page has right title.
+		it "- Should have the right title" do
+
+			# Simulate user visiting the home page.
+			visit '/static_pages/home'
+
+			# Test to see if page has title and that
+			# the title contains the proper format.
+			page.should have_selector('title', :text => 
+				"Ruby on Rails Tutorial Sample App | Home")
 		end
 	end
 
@@ -32,9 +44,22 @@ describe "Static pages" do
 			# Test simulates a user visiting the site.
 			visit '/static_pages/help'
 
-			# Text looks at the content of the help.
-			# page to see if it has content Help.
-			page.should have_content('Help')
+			# Test looks at the h1 of the page for
+			# the content Help.
+			page.should have_selector('h1', :text => 
+				'Help')
+		end
+
+		# Test to see if help page has right title.
+		it "- Should have the right title" do
+
+			# Simulate user visiting the home page.
+			visit '/static_pages/help'
+
+			# Test to see if page has title and that
+			# the title contains the proper format.
+			page.should have_selector('title', :text => 
+				"Ruby on Rails Tutorial Sample App | Help")
 		end
 	end
 
@@ -49,9 +74,22 @@ describe "Static pages" do
 			# Test simulates a user visiting the site.
 			visit '/static_pages/about'
 
-			# Text looks at the content of the about
-			# page to see if it has content About Us
-			page.should have_content('About Us')
+			# Test looks at the h1 of the page for
+			# the content About Us.
+			page.should have_selector('h1', :text => 
+				'About Us')
+		end
+
+		# Test to see if about page has right title.
+		it "- Should have the right title" do
+
+			# Simulate user visiting the home page.
+			visit '/static_pages/about'
+
+			# Test to see if page has title and that
+			# the title contains the proper format.
+			page.should have_selector('title', :text => 
+				"Ruby on Rails Tutorial Sample App | About Us")
 		end
 	end
 end
