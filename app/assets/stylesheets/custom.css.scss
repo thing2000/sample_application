@@ -1,63 +1,32 @@
-/* 
-	Ensures boostrap will be avaliable
-	for page when it loads 
-*/
 @import "bootstrap";
 
-/* universal */
+/* mixins, variables, etc. */
 
-/* 
-	A scroll feature is added to deal with
-	content that flows over the html container's
-	top and/or bottom.
-*/
+$grayMediumLight: #eaeaea;
+
+/* universal */
 
 html {
   overflow-y: scroll;
 }
 
-/*
-	The space between the top wall of body
-	and the content will be 60px apart
-*/
-
 body {
   padding-top: 60px;
 }
-
-/*
-	If content over flows any side of the section
-	container, a scroll feature will be added.
-*/
 
 section {
   overflow: auto;
 }
 
-/*
-	Allows the test area to be resized vertically. 
-*/
-
 textarea {
   resize: vertical;
 }
 
-/*
-	class center's text will now be centered.
-*/
-
 .center {
   text-align: center;
-}
-
-/*
-	The h1 tags of the center class bottom margin
-	will now have a 10px space between it and the other
-	objects below it the container
-*/
-
-.center h1 {
-  margin-bottom: 10px;
+  h1 {
+    margin-bottom: 10px;
+  }
 }
 
 /* typography */
@@ -79,7 +48,7 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: #999;
+  color: $grayLight;
 }
 
 p {
@@ -87,23 +56,23 @@ p {
   line-height: 1.7em;
 }
 
+
 /* header */
 
 #logo {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: #fff;
+  color: white;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
   line-height: 1;
-}
-
-#logo:hover {
-  color: #fff;
-  text-decoration: none;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
 }
 
 /* footer */
@@ -111,28 +80,23 @@ p {
 footer {
   margin-top: 45px;
   padding-top: 5px;
-  border-top: 1px solid #eaeaea;
-  color: #999;
-}
-
-footer a {
-  color: #555;
-}  
-
-footer a:hover { 
-  color: #222;
-}
-
-footer small {
-  float: left;
-}
-
-footer ul {
-  float: right;
-  list-style: none;
-}
-
-footer ul li {
-  float: left;
-  margin-left: 10px;
+  border-top: 1px solid $grayMediumLight;
+  color: $grayLight;
+  a {
+    color: $gray;
+    &:hover { 
+      color: $grayDarker;
+    }
+  }  
+  small { 
+    float: left; 
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 10px;
+    }
+  }
 }
