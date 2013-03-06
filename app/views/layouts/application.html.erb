@@ -13,55 +13,29 @@
 	  		:media => "all" %>
 	  	<%= javascript_include_tag "application" %>
 	  	<%= csrf_meta_tags %>
-	  	<!-- 
-	  		Shim for legacy Internet Explorers that a earlier than
-	  		version 9
-	  	-->
-	   	<!--[if lt IE 9]>
-	    	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	    <![endif]-->
+
+      <% 
+        # Renders content of layouts/_shim.htm.erb
+        # into the place of the page.
+      %>
+	    <%= render 'layouts/shim' %>
 	</head>
 <body>
-    <!-- 
-    	Classes used in layout have specific meaning in Bootstrap
-    	Bootstrap it a gemfile supplied by twitter for generating
-    	CSS easily and quick formatting of page latout. 
-    -->
-    
-    <!-- Top of page -->
-    <header class="navbar navbar-fixed-top navbar-inverse">
-      <div class="navbar-inner">
-        <div class="container">
-          <% 
-          	# Logo at top of page.
-          	# link_to creates a html hyperlink with the text
-          	# sample app being visible. Currently the href will
-          	# link to # and it will have an id of logo.
-          %>
-          <%= link_to "sample app", '#', id: "logo" %>
-          <!-- navigation bar for the site -->
-          <nav>
-            <ul class="nav pull-right">
-              <%
-              	# link_to is used to create hyperlinks for the
-              	# navigation bar. The first parameter is the text
-              	# that will be displayed such as Home. The next
-              	# parameter is were the href will direct the browser.
-              	# At this point it is using the # sysmbol for a blank
-              	# link.
-              %>
-              <li><%= link_to "Home",    '#' %></li>
-              <li><%= link_to "Help",    '#' %></li>
-              <li><%= link_to "Sign in", '#' %></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </header>
-    <!-- Main body of the page -->
-    <div class="container">
-      <% # Renders the main html file here. %>
-      <%= yield %>
-    </div>
+  <%
+    # Renders the header here from
+    # layouts/_header.html.erb to this
+    # location of the page.
+  %>
+  <%= render 'layouts/header' %>
+  <!-- Main body of the page -->
+  <div class="container">
+    <% # Renders the main html file here. %>
+    <%= yield %>
+    <%
+    # Render the footer from layouts/_footer.html.erb
+    # to this location of page
+    %>
+    <%= render 'layouts/footer' %>
+  </div>
 </body>
 </html>
