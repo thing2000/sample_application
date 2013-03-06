@@ -34,7 +34,17 @@ describe "Static pages" do
 			# Test to see if page has title and that
 			# the title contains the proper format.
 			page.should have_selector('title', :text => 
-				"#{base_title} | Home")
+				"#{base_title}")
+		end
+
+		# Test to see if page does not have custom title | Home
+		it "- Should not have a custom page title | Home" do
+			
+			#Simulate user visiting home page.
+			visit '/static_pages/home'
+
+			#Test to see if title does not have | Home in title.
+			page.should_not have_selector('title', :text =>'| Home')
 		end
 	end
 
