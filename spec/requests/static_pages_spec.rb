@@ -17,7 +17,7 @@ describe "Static pages" do
 		it "- Should have the content 'Sample App'" do
 			
 			# Test simulates a user visiting the site.
-			visit '/static_pages/home'
+			visit root_path
 
 			# Test looks at the h1 of the page for
 			# the content Sample App.
@@ -29,7 +29,7 @@ describe "Static pages" do
 		it "- Should have the right title" do
 
 			# Simulate user visiting the home page.
-			visit '/static_pages/home'
+			visit root_path
 
 			# Test to see if page has title and that
 			# the title contains the proper format.
@@ -41,7 +41,7 @@ describe "Static pages" do
 		it "- Should not have a custom page title | Home" do
 			
 			#Simulate user visiting home page.
-			visit '/static_pages/home'
+			visit root_path
 
 			#Test to see if title does not have | Home in title.
 			page.should_not have_selector('title', :text =>'| Home')
@@ -57,7 +57,7 @@ describe "Static pages" do
 		it "- Should have the content 'Help'" do
 			
 			# Test simulates a user visiting the site.
-			visit '/static_pages/help'
+			visit help_path
 
 			# Test looks at the h1 of the page for
 			# the content Help.
@@ -69,7 +69,7 @@ describe "Static pages" do
 		it "- Should have the right title" do
 
 			# Simulate user visiting the help page.
-			visit '/static_pages/help'
+			visit help_path
 
 			# Test to see if page has title and that
 			# the title contains the proper format.
@@ -87,7 +87,7 @@ describe "Static pages" do
 		it "- Should have the content 'About Us'" do
 
 			# Test simulates a user visiting the site.
-			visit '/static_pages/about'
+			visit about_path
 
 			# Test looks at the h1 of the page for
 			# the content About Us.
@@ -99,7 +99,7 @@ describe "Static pages" do
 		it "- Should have the right title" do
 
 			# Simulate user visiting the about page.
-			visit '/static_pages/about'
+			visit about_path
 
 			# Test to see if page has title and that
 			# the title contains the proper format.
@@ -117,7 +117,7 @@ describe "Static pages" do
 		it "- Should have the content 'Contact'" do
 
 			# Test simulates a user visiting the site.
-			visit '/static_pages/contact'
+			visit contact_path
 
 			# Test looks at the h1 of the page for
 			# the content Contact.
@@ -129,7 +129,7 @@ describe "Static pages" do
 		it "- Should have the right title" do
 
 			# Simulate user visiting the contact page.
-			visit '/static_pages/contact'
+			visit contact_path
 
 			# Test to see if page has title and that
 			# the title contains the proper format.
