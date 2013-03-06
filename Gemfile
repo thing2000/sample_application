@@ -6,6 +6,12 @@ source 'https://rubygems.org'
 # is used.
 gem 'rails', '3.2.12'
 
+# Bootstrap wil be used to prepare page
+# layout. The sass will convert the native
+# less-css format bootstrap uses to the rails
+# sass format.
+gem 'bootstrap-sass', '2.1'
+
 # Group that is only used when in
 # development and test environments
 group :development, :test do
