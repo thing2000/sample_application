@@ -24,4 +24,10 @@ SampleApplication::Application.routes.draw do
   # It also creates two names routes, contact_path
   # and contact_url.
    match '/contact', to: 'static_pages#contact'
+
+  # Routes /signup to the new action
+  # contact. This loads the new.html.erb page.
+  # It also creates two names routes, signup_path
+  # and signup_url.
+   match '/signup', to: 'users#new'
 end

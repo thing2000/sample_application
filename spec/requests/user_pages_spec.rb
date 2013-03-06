@@ -1,11 +1,24 @@
+# Give the file access to spec_helper.rb
 require 'spec_helper'
 
+# Describes that test are for user pages
 describe "UserPages" do
-  describe "GET /user_pages" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get user_pages_index_path
-      response.status.should be(200)
-    end
-  end
+	
+	# Lets test know that the page is the subject of the test
+	subject { page }
+
+	# Describe that test is for the signup page
+	describe "- Signup page" do
+
+		# Before each test a simulated a visit to signup page
+		before { visit signup_path }
+
+		# Test that the signup page has a h1 tage containing
+		# content Sign Up.
+		it { should have_selector 'h1', text: 'Sign up' }
+
+		# Test that the signup page has a title tag that contains
+		# the content Sign Up.
+		it { should have_selector 'title', text: full_title('Sign up') }
+	end
 end
