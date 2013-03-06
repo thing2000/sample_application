@@ -1,4 +1,6 @@
 SampleApplication::Application.routes.draw do
+  get "users/new"
+
   # Routes /home to the static_pages action
   # home. This loads the home.html.erb page.
   # It also creates two names routes, home_path
