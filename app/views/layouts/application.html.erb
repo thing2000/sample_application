@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	    <% # Variable title from main page outputed %>
-	    <% # in title. %>
+	    <% # Helper class full_title is called %>
+	    <% # sending variable title as a parameter. %>
+	    
+	    <% # Variable title is declared in main page %>
+	    <% # being rendered through the layout page. %>
 	    <title>
-	      Ruby on Rails Tutorial Sample App | <%= yield(:title) %>
+	      <%= full_title(yield(:title)) %>
 	    </title>
 	  	<%= stylesheet_link_tag    "application", 
 	  		:media => "all" %>
