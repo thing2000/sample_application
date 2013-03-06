@@ -9,132 +9,78 @@ describe "Static pages" do
 	# This will be used throughout the test 
 	let(:base_title) { "Ruby on Rails Tutorial Sample App" }
 	
+	# Eliminates the need for telling each test what the subject
+	# of each test should be. This means we can elimitace the page
+	# before each should.
+	subject { page }
+
 	# Describes that home page is being tested.
 	# Will be displayed in the event of a failed test.
 	describe "- Home page" do
 		
-		# Describe what is being tested about home page.
-		it "- Should have the content 'Sample App'" do
-			
-			# Test simulates a user visiting the site.
-			visit root_path
+		# The before will be executed at the start of ever
+		# test. Each time it is called a simulated visit to
+		# root_path will occur.
+		before { visit root_path }
 
-			# Test looks at the h1 of the page for
-			# the content Sample App.
-			page.should have_selector('h1', :text => 
-				'Sample App')	
-		end
+		# Test looks at home page and determines if it has
+		# a h1 tag with the contents of Sample App.
+		it { should have_selector 'h1', text: 'Sample App' }
 
-		# Test to see if home page has right title.
-		it "- Should have the right title" do
+		# Test looks at home page and dertermines if it has
+		# a title tag and if it contains predefined text.
+		it { should have_selector 'title', text: full_title('') }
 
-			# Simulate user visiting the home page.
-			visit root_path
-
-			# Test to see if page has title and that
-			# the title contains the proper format.
-			page.should have_selector('title', :text => 
-				"#{base_title}")
-		end
-
-		# Test to see if page does not have custom title | Home
-		it "- Should not have a custom page title | Home" do
-			
-			#Simulate user visiting home page.
-			visit root_path
-
-			#Test to see if title does not have | Home in title.
-			page.should_not have_selector('title', :text =>'| Home')
-		end
+		# Test looks at home page and ensures that it does not
+		# contail a custom title.
+		it { should_not have_selector 'title', text: '| Home' }
 	end
 
 	# Describe that help page is being tested.
 	# Will be displayed in the event of a failed test.
 	describe "- Help page" do
 
-		# Describes what is being tested about the 
-		# help page.
-		it "- Should have the content 'Help'" do
-			
-			# Test simulates a user visiting the site.
-			visit help_path
+		# Before each test a sumilated visit to help_path
+		# will occur.
+		before { visit help_path }
 
-			# Test looks at the h1 of the page for
-			# the content Help.
-			page.should have_selector('h1', :text => 
-				'Help')
-		end
+		# Test will see if help page has tag h1 with
+		# the content of Help.
+		it { should have_selector 'h1', text: 'Help' }
 
-		# Test to see if help page has right title.
-		it "- Should have the right title" do
-
-			# Simulate user visiting the help page.
-			visit help_path
-
-			# Test to see if page has title and that
-			# the title contains the proper format.
-			page.should have_selector('title', :text => 
-				"#{base_title} | Help")
-		end
+		# Test will see if help page has a tag title with
+		# a custom title comtaining Help.
+		it { should have_selector 'title', text: full_title('Help') }
 	end
 
 	# Describe that the about page is being tested.
 	# Will be displayed if test fails.
 	describe "- About page" do
 
-		# Describes what is being tested about the
-		# about page.
-		it "- Should have the content 'About Us'" do
+		# Before each test a simulated visit to about_path will occur
+		before { visit about_path }
 
-			# Test simulates a user visiting the site.
-			visit about_path
+		# Test the about page for a h1 tab containing About Us
+		it { should have_selector 'h1', text: 'About Us' }
 
-			# Test looks at the h1 of the page for
-			# the content About Us.
-			page.should have_selector('h1', :text => 
-				'About Us')
-		end
-
-		# Test to see if about page has right title.
-		it "- Should have the right title" do
-
-			# Simulate user visiting the about page.
-			visit about_path
-
-			# Test to see if page has title and that
-			# the title contains the proper format.
-			page.should have_selector('title', :text => 
-				"#{base_title} | About Us")
-		end
+		# Test the about page for a title tag containing a custom
+		# content containing | About Us
+		it { should have_selector 'title', text: full_title('About Us') }
 	end
 
 	# Describe that the contact page is being tested.
 	# Will be displayed if test fails.
 	describe "- Contact page" do
 
-		# Describes what is being tested about the
-		# contact page.
-		it "- Should have the content 'Contact'" do
+		# Before each test a sumulated visit to contact_path occurs
+		before { visit contact_path }
 
-			# Test simulates a user visiting the site.
-			visit contact_path
+		# Test to see if contact page has a h1 tag that contains
+		# the content Contact
+		it { should have_selector 'h1', text: 'Contact' }
 
-			# Test looks at the h1 of the page for
-			# the content Contact.
-			page.should have_selector('h1', :text => 
-				'Contact')
-		end
-
-		# Test to see if about page has right title.
-		it "- Should have the right title" do
-
-			# Simulate user visiting the contact page.
-			visit contact_path
-
-			# Test to see if page has title and that
-			# the title contains the proper format.
-			page.should have_selector('title', :text => 
-				"#{base_title} | Contact")
-		end
+		# Test to see if contact page has a title tag that contails
+		# the content Contact
+		it { should have_selector 'title', text: full_title('Contact') }
 	end
 end
