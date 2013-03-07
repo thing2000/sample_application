@@ -10,5 +10,9 @@
 #
 
 class User < ActiveRecord::Base
+  
+  # Tells rails witch attributes in the User model
+  # that is accessible. These attributes can be modified
+  # by the outside world.
   attr_accessible :email, :name
 end
