@@ -14,7 +14,7 @@
       	# sample app being visible. Currently the href will
       	# link to # and it will have an id of logo.
       %>
-      <%= link_to "sample app", 'root_path', id: "logo" %>
+      <%= link_to "sample app", root_path, id: "logo" %>
       <!-- navigation bar for the site -->
       <nav>
         <ul class="nav pull-right">
@@ -26,8 +26,8 @@
           	# At this point it is using the # sysmbol for a blank
           	# link.
           %>
-          <li><%= link_to "Home", 'root_path' %></li>
-          <li><%= link_to "Help", 'help_path' %></li>
+          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Help", help_path %></li>
           <li><%= link_to "Sign in", '#' %></li>
         </ul>
       </nav>
