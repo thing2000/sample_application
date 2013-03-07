@@ -48,4 +48,5 @@ describe User do
 
 		# Test that th @user object is now not valid
 		it { should_not be_valid }
+	end
 end
