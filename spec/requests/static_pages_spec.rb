@@ -14,6 +14,18 @@ describe "Static pages" do
 	# before each should.
 	subject { page }
 
+	# These test will be run for each static_pages
+	# This can be used by calling its name "all static pages"
+	shared_examples_for "all static pages" do
+		# Test that the page has a h1 tag with content that matches
+		# the value in heading variable
+		it { should have_selector 'h1', text: head }
+
+		# Test that the page has a title tag that with content that
+		# matches the value in page_title variable
+		it { should have_selector 'title', text: full_title(page_title) }
+	end
+
 	# Describes that home page is being tested.
 	# Will be displayed in the event of a failed test.
 	describe "- Home page" do
@@ -22,14 +34,17 @@ describe "Static pages" do
 		# test. Each time it is called a simulated visit to
 		# root_path will occur.
 		before { visit root_path }
+		
+		# Set the value of heading variable to Sample App
+		let(:head) { 'Sample App' }
 
-		# Test looks at home page and determines if it has
-		# a h1 tag with the contents of Sample App.
-		it { should have_selector 'h1', text: 'Sample App' }
+		# Set the value of page_title to ""
+		let(:page_title) { '' }
 
-		# Test looks at home page and dertermines if it has
-		# a title tag and if it contains predefined text.
-		it { should have_selector 'title', text: full_title('') }
+		
+		# Now that the value of heading and page_title have been
+		# set run the test "ass static pages" against the symbols.
+		it_should_behave_like "all static pages"
 
 		# Test looks at home page and ensures that it does not
 		# contail a custom title.
@@ -44,13 +59,15 @@ describe "Static pages" do
 		# will occur.
 		before { visit help_path }
 
-		# Test will see if help page has tag h1 with
-		# the content of Help.
-		it { should have_selector 'h1', text: 'Help' }
+		# Set the value of head to Help.
+		let(:head) { 'Help' }
 
-		# Test will see if help page has a tag title with
-		# a custom title comtaining Help.
-		it { should have_selector 'title', text: full_title('Help') }
+		# Set the value of page_title to Help.
+		let(:page_title) { 'Help' }
+
+		# Run "all static pages" tests passing the symbols
+		# head and page_title.
+		it_should_behave_like "all static pages"
 	end
 
 	# Describe that the about page is being tested.
@@ -60,12 +77,15 @@ describe "Static pages" do
 		# Before each test a simulated visit to about_path will occur
 		before { visit about_path }
 
-		# Test the about page for a h1 tab containing About Us
-		it { should have_selector 'h1', text: 'About Us' }
+		# Set the value of head to About us
+		let(:head) { 'About Us' }
 
-		# Test the about page for a title tag containing a custom
-		# content containing | About Us
-		it { should have_selector 'title', text: full_title('About Us') }
+		# Set the value of page_title to About us
+		let(:page_title) { 'About Us'}
+
+		# Run the test in all static pages passing
+		# the symbols head and page_title
+		it_should_behave_like "all static pages"
 	end
 
 	# Describe that the contact page is being tested.
@@ -75,12 +95,14 @@ describe "Static pages" do
 		# Before each test a sumulated visit to contact_path occurs
 		before { visit contact_path }
 
-		# Test to see if contact page has a h1 tag that contains
-		# the content Contact
-		it { should have_selector 'h1', text: 'Contact' }
+		# Set the value of head to Contact
+		let(:head) { 'Contact' }
 
-		# Test to see if contact page has a title tag that contails
-		# the content Contact
-		it { should have_selector 'title', text: full_title('Contact') }
+		# Set the value of page_title to Contact
+		let(:page_title) { 'Contact' }
+
+		# Run the test in all static pages passing
+		# the symbols head and page_title
+		it_should_behave_like "all static pages"
 	end
 end
