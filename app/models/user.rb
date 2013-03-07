@@ -20,4 +20,9 @@ class User < ActiveRecord::Base
   # an empty name attribute before saving to the
   # database.
   validates :name, presence: true
+
+  # Ensures that the user object does not have
+  # an empty email attribute before saving to the
+  # database.
+  validates :email, presence: true
 end

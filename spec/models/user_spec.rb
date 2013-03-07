@@ -43,10 +43,23 @@ describe User do
 	describe "- When name is not present" do
 
 		# Before test runs set the name attribute 
-		#of the @user object to blank.
-		before { @user.name = " "}
+		# of the @user object to blank.
+		before { @user.name = " " }
 
-		# Test that th @user object is now not valid
+		# Test that the @user object is now not valid
+		it { should_not be_valid }
+	end
+
+	# Test to ensure that when the email attribute 
+	# is blank it will not be valid to save to the
+	# database.
+	describe "- When email is not present" do
+		
+		# Before test runs set the email attribute 
+		# of the @user object to blank.
+		before { @user.email = " " }
+
+		# Test that the @user object is now not valid		
 		it { should_not be_valid }
 	end
 end
