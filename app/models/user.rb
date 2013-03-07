@@ -15,4 +15,9 @@ class User < ActiveRecord::Base
   # that is accessible. These attributes can be modified
   # by the outside world.
   attr_accessible :email, :name
+
+  # Ensures that the user object does not have
+  # an empty name attribute before saving to the
+  # database.
+  validates :name, presence: true
 end

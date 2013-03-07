@@ -32,4 +32,20 @@ describe User do
 	# object has attributes that responds to the email
 	# symbol.
 	it { should respond_to(:email) }
+
+	# Test that the current state of the @user object
+	# is valid
+	it { should be_valid }
+
+	# Test to ensure that when the name attribute 
+	# is blank it will not be valid to save to the
+	# database.
+	describe "- When name is not present" do
+
+		# Before test runs set the name attribute 
+		#of the @user object to blank.
+		before { @user.name = " "}
+
+		# Test that th @user object is now not valid
+		it { should_not be_valid }
 end
