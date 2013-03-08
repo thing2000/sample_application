@@ -19,21 +19,32 @@ describe User do
 	# Before each test a local object of User model is created 
 	# filling the attributes name and email with dummy information.
 	before do
-		@user = User.new(name: "Example User", email: "user@example.com")
+		@user = User.new(name: "Example User", email: "user@example.com",
+			password: "foobar", password_confirmation: "foobar")
 	end
 
 	# Makes @user the subject of each test
 	subject { @user }
 
-	# Test to see if there is a attribute in the @user
-	# object has attributes that responds to the name
-	# symbol.
+	# Test to see if there is a attribute name
+	# locate in @user object
 	it { should respond_to(:name) }
 
-	# Test to see if there is a attribute in the @user
-	# object has attributes that responds to the email
-	# symbol.
+	# Test to see if there is a attribute email
+	# locate in @user object
 	it { should respond_to(:email) }
+
+	# Test to see if there is a attribute password_digest
+	# locate in @user object
+	it { should respond_to(:password_digest) }
+
+	# Test to see if there is a attribute password
+	# locate in @user object
+	it { should respond_to(:password) }
+
+	# Test to see if there is a attribute password_confirmation
+	# locate in @user object
+	it { should respond_to(:password_confirmation) }
 
 	# Test that the current state of the @user object
 	# is valid
@@ -141,6 +152,41 @@ describe User do
 
 		# With duplicate email saved to database, check
 		# that user email is invalid.
+		it { should_not be_valid }
+	end
+
+	# Test to ensure empty password will be invalid
+	describe "- When password is not present" do
+
+		# Set password and password_confirmation of the @user
+		# object to empty.
+		before { @user.password = @user.password_confirmation = " " }
+
+		# Test blank passwords to ensure they are invalid.
+		it { should_not be_valid }
+	end
+
+	# Test for password and password_confirmation mismatch
+	# will lead to them being invalid.
+	describe "- When password doesn't match confirmation" do
+		
+		# Set password_confirmation to mismatch so it will
+		# not be the same a password.
+		before { @user.password_confirmation = "mismatch" }
+		
+		# Test to ensure that the unmatching password and
+		# password_confirmation are invalid.
+		it { should_not be_valid }
+	end
+
+	# Test password_confirmation is invalid when nil
+	describe "- When password confirmation is nil" do
+		
+		# Set password_confirmation to nil
+		before { @user.password_confirmation = nil }
+		
+		# Test that password_confirmation having the
+		# value on nil is invalid.
 		it { should_not be_valid }
 	end
 end
