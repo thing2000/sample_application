@@ -16,6 +16,9 @@ class User < ActiveRecord::Base
   # by the outside world.
   attr_accessible :email, :name
 
+  # Call back that ensures email will be lowercase
+  before_save { |user| user.email = email.downcase }
+
   # Ensures that the user object does not have
   # an empty name attribute before saving to the
   # database. Also checks that the length does not exceed
@@ -28,6 +31,7 @@ class User < ActiveRecord::Base
   # Ensures that the user object does not have
   # an empty email attribute before saving to the
   # database. Also test email against the regular expression
-  # for validation.
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
+  # for validation. The test checks for uniqueness and is case insensitive.
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
+  	uniqueness: {case_sensitive: false}
 end

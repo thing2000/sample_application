@@ -17,8 +17,9 @@ describe User do
 
 	# Before each test a local object of User model is created 
 	# filling the attributes name and email with dummy information.
-	before { @user = User.new(name: "Example User",
-		email: "user@example.com") }
+	before do
+		@user = User.new(name: "Example User", email: "user@example.com")
+	end
 
 	# Makes @user the subject of each test
 	subject { @user }
@@ -119,5 +120,26 @@ describe User do
 				@user.should be_valid
 			end
 		end
+	end
+
+	# Test to ensure email uniqueness stops matching emails
+	describe "- When email address is already taken" do
+		# Create duplicate email and save to the database before
+		# testing for uniqueness. This will ensure that same email
+		# already exist.
+		before do
+			# Duplicate user object and assign it to new variable
+			user_with_same_email = @user.dup
+
+			# Set email to uppercase
+			user_with_same_email.email = @user.email.upcase
+			
+			# Save duplicate user to database
+			user_with_same_email.save
+		end
+
+		# With duplicate email saved to database, check
+		# that user email is invalid.
+		it { should_not be_valid }
 	end
 end
