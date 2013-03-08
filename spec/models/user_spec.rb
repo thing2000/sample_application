@@ -46,6 +46,10 @@ describe User do
 	# locate in @user object
 	it { should respond_to(:password_confirmation) }
 
+	# Test to see is there is a attribute authenticate
+	# located in @user object.
+	it { shou respond_to(:authenticate) }
+
 	# Test that the current state of the @user object
 	# is valid
 	it { should be_valid }
@@ -188,5 +192,48 @@ describe User do
 		# Test that password_confirmation having the
 		# value on nil is invalid.
 		it { should_not be_valid }
+	end
+
+	# Test to ensure that a password that is to short will be invalid
+	describe "- With a password that's too short" do
+		
+		# Set the password and password_confirmation to aaaaa
+		before { @user.password = @user.password_confirmation = "a" * 5 }
+		
+		# Test that the password is under six characters and should 
+		# be invalid.
+		it { should be_invalid }
+	end
+
+	# Test to see if password validation is working
+	describe "- Return value of authenticate method" do
+		
+		# Save the @user object to the database
+		before { @user.save }
+		
+		# Set symbol found_user to the object returned
+		# from find_by_email request sending the @user email
+		# as search param.
+		let(:found_user) { User.find_by_email(@user.email) }
+
+		# Test to see is system accepts valid password
+		describe "- With valid password" do
+			
+			# Test to ensure that both password match
+			it { should == found_user.authenticate(@user.password) }
+		end
+
+		# Test that system catches password mismatch
+		describe "- With invalid password" do
+			
+			# Set variable to invalid to ensure a mismatch
+			let(:user_for_invalid_password) { found_user.authenticate("invalid") }
+
+			# Test that the two mismatch passwords are invalid
+			it { should_not == user_for_invalid_password }
+			
+			# Test that user_for_invalid is false
+			specify { user_for_invalid_password.should be_false }
+		end
 	end
 end
