@@ -15,7 +15,9 @@ class User < ActiveRecord::Base
   # Tells rails witch attributes in the User model
   # that is accessible. These attributes can be modified
   # by the outside world.
-  attr_accessible :email, :name
+  attr_accessible :email, :name, :password, :password_confirmation
+
+  has_secure_password
 
   # Call back that ensures email will be lowercase
   before_save { |user| user.email = email.downcase }
@@ -35,4 +37,11 @@ class User < ActiveRecord::Base
   # for validation. The test checks for uniqueness and is case insensitive.
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
   	uniqueness: {case_sensitive: false}
+
+  # Ensures that the password is not blank and that is is at least
+  # six characters long.
+  validates :password, presence: true, length: { minimum: 6 }
+
+  # Ensures that password_confirmation exist and is not blank. 
+  validates :password_confirmation, presence: true
 end

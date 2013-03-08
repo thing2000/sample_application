@@ -19,7 +19,7 @@ describe User do
 	# Before each test a local object of User model is created 
 	# filling the attributes name and email with dummy information.
 	before do
-		@user = User.new(name: "Example User", email: "user@example.com",
+		@user = User.new(name: "Example User", email: "user@example.com", 
 			password: "foobar", password_confirmation: "foobar")
 	end
 
@@ -48,7 +48,7 @@ describe User do
 
 	# Test to see is there is a attribute authenticate
 	# located in @user object.
-	it { shou respond_to(:authenticate) }
+	it { should respond_to(:authenticate) }
 
 	# Test that the current state of the @user object
 	# is valid
