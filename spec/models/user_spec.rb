@@ -62,4 +62,16 @@ describe User do
 		# Test that the @user object is now not valid		
 		it { should_not be_valid }
 	end
+
+	# Test to ensure that name length validation
+	# is in place and working.
+	describe "- When name is too long" do
+		
+		# Set the value of name to a string 51 characters
+		# long.
+		before { @user.name = "a" * 51 }
+
+		# Test that the value in name is now not valid
+		it { should_not be_valid }
+	end
 end
