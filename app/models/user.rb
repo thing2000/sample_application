@@ -18,8 +18,9 @@ class User < ActiveRecord::Base
 
   # Ensures that the user object does not have
   # an empty name attribute before saving to the
-  # database.
-  validates :name, presence: true
+  # database. Also checks that the length does not exceed
+  # the maximum of 50 characters.
+  validates :name, presence: true, length: { maximum: 50 }
 
   # Ensures that the user object does not have
   # an empty email attribute before saving to the
