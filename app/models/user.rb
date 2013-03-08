@@ -22,8 +22,12 @@ class User < ActiveRecord::Base
   # the maximum of 50 characters.
   validates :name, presence: true, length: { maximum: 50 }
 
+  # Regular expression to define the format
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i  
+
   # Ensures that the user object does not have
   # an empty email attribute before saving to the
-  # database.
-  validates :email, presence: true
+  # database. Also test email against the regular expression
+  # for validation.
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
 end

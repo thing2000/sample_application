@@ -74,4 +74,50 @@ describe User do
 		# Test that the value in name is now not valid
 		it { should_not be_valid }
 	end
+
+	# Test to see if validation catched invalid email formats
+	describe "- When email format is invalid" do
+		
+		# Test email validation using invalid email entries
+		it "- Should be invalid" do
+			
+			# Array of invalid emails to test validation against
+			addresses = %w[user@foo,com user_at_foo.org example.user@foo.
+                     foo@bar_baz.com foo@bar+baz.com]
+			
+            # Loop through each email in the array and passes
+            # into block to be tested.
+			addresses.each do |invalid_address|
+				
+				# Give object attribute email the value if
+				# block variable.
+				@user.email = invalid_address
+				
+				# Test that the email is now not valid
+				@user.should_not be_valid
+			end
+		end
+	end
+
+	# Test to see if the validation recognizes valid emails
+	describe "- When email format is valid" do
+		
+		# Test emails entries that should be valid
+		it "- Should be valid" do
+			
+			# Array of valid email entries
+			addresses = %w[user@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
+			
+			# Pass each email entry into block using block varialbe
+			# valid_address
+			addresses.each do |valid_address|
+				
+				# Assign the object attribute email with the block variable
+				@user.email = valid_address
+
+				# Test to see if email is valid
+				@user.should be_valid
+			end
+		end
+	end
 end
