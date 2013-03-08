@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   # by the outside world.
   attr_accessible :email, :name, :password, :password_confirmation
 
+  # Require presence of password, ensure that they match
+  # and encrypt them to the database.
   has_secure_password
 
   # Call back that ensures email will be lowercase

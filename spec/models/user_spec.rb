@@ -159,6 +159,26 @@ describe User do
 		it { should_not be_valid }
 	end
 
+	# Test that email is downcased before saved
+	describe "- Email address with mixed case" do
+		
+		# Set mixed_case_email to a mixed case email
+		let(:mixed_case_email) { "Foo@ExAMPle.CoM" }
+
+		# Test that email is downcased
+		it "- Should be saved as all lower-case" do
+			# Set @user object's email to mixed_case_email
+			@user.email = mixed_case_email
+
+			# Save @user object to database
+			@user.save
+
+			# Save that email saved in database matches mix_case_email
+			# downcased.
+			@user.reload.email.should == mixed_case_email.downcase
+		end
+	end
+
 	# Test to ensure empty password will be invalid
 	describe "- When password is not present" do
 
