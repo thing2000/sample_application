@@ -36,6 +36,13 @@
     # to this location of page
     %>
     <%= render 'layouts/footer' %>
+
+    <%
+      # Displays a hash that contains the controller
+      # and action for the page. It is only displayed
+      # if rails is in a development environment.
+    %>
+    <%= debug(params) if Rails.env.develoment? %>
   </div>
 </body>
 </html>

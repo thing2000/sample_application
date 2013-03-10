@@ -1,5 +1,7 @@
 SampleApplication::Application.routes.draw do
-  get "users/new"
+
+  # Setup the REST URIs for users
+  resources :users
 
   # Routes /home to the static_pages action
   # home. This loads the home.html.erb page.
