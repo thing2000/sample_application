@@ -25,6 +25,9 @@ describe "UserPages" do
 	# Test are for the profile page
 	describe "- Profile page" do
 		
+		# Create a user factory and assign it to user variable
+		let(:user) { FactoryGirl.create(:user) }
+
 		# Before each test visit user_path route passing in
 		# user variable as parameter.
 		before { visit user_path(user) }
