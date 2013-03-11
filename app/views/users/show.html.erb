@@ -1,8 +1,14 @@
 <% # Declare a hash title and assigne it user name %>
 <% provide(:title, @user.name) %>
 
-<% # Display user name in h1 tag %>
-<h1><%= @user.name %></h1>
+<h1>
+	<% # Call mathod gravatar_for passing @user object %>
+	<% # This will return a gravatar image %>
+	<%= gravatar_for @user %>
+	
+	<% # User name for the header diaplay %>
+	<%= @user.name %>
+</h1>
 
 <% # Display user name and email from User object. %>
 <%= @user.name %>, <%= @user.email %>
