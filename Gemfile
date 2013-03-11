@@ -23,7 +23,10 @@ group :development, :test do
 	gem 'sqlite3', '1.3.5'
 
 	# Test suite for thei application
-	gem 'rspec-rails', '2.11.0'	
+	gem 'rspec-rails', '2.11.0'
+
+	# Factory generator
+	gem 'factory_girl_rails', '4.1.0'	
 end
 
 # Group of gemfiles that will only be
