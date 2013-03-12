@@ -14,8 +14,28 @@ class UsersController < ApplicationController
   # from database.
   def show
   	# Creates a @user variable that populates it
-  	# with database query using the id attribute
-  	# from the user table.
+  	# with database query using the id hash from
+    # the params hash sent by the page through the
+    # GET method.
   	@user = User.find(params[:id])
+  end
+
+  # Called upon when a new user it to be saved/created
+  # in the database. This is part of the REST architechure.
+  def create
+
+    # Creates a new @user object giving it that attributes
+    # sent from the page through the POST method. These are
+    # stored in a hash :user. The params is a hash of hashes.
+    @user = User.new(params[:user])
+    
+    # Attempts to save the @save object to the database.
+    if @user.save
+    
+    # If if failed this code is executed.
+    else
+      # 
+      render 'new'
+    end
   end
 end
