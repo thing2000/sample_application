@@ -13,6 +13,10 @@ describe "UserPages" do
 		# Before each test a simulated a visit to signup page
 		before { visit signup_path }
 
+		# Symbol that has the value of the submit button
+		# on the signup page.
+		let(:submit) { "Create my account" }
+
 		# Test that the signup page has a h1 tage containing
 		# content Sign Up.
 		it { should have_selector 'h1', text: 'Sign up' }
@@ -20,6 +24,40 @@ describe "UserPages" do
 		# Test that the signup page has a title tag that contains
 		# the content Sign Up.
 		it { should have_selector 'title', text: full_title('Sign up') }
+
+		# Test submitting a blank form will be invalid
+		describe "- With invalid information" do
+		
+			# Test that a user should not be created with blank form
+			it "- Should not create a user" do
+				
+				# Counts number of users in database. Then it submits
+				# a blank form to the model for processing. Finally it
+				# counts the number of users in the database to ensure
+				# that it has not increased.
+				expect { click_button submit }.not_to change(User, :count)
+			end
+		end
+
+		# Test that valid forms will be saved to database
+		describe "- With valid information" do
+			
+			# Fill in forms with valid information before each test
+			before do
+				fill_in "Name", with: "Example User"
+				fill_in "Email", with: "user@example.com"
+				fill_in "Password", with: "password"
+				fill_in "Confirmation", with: "password"
+			end
+
+			# Count the number of users in the database. Then submit
+			# the valid form information to the model to be processed.
+			# Finally count the number of users in database to ensure
+			# that it has increated by one.
+			it "- Should create a user" do
+				expect { click_button submit }.to change(User, :count).by(1)
+			end
+		end
 	end
 
 	# Test are for the profile page
