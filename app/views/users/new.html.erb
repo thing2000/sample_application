@@ -14,6 +14,9 @@
   	%>
     <%= form_for(@user) do |f| %>
 
+      <% # renders the partial error_messages to page %>
+      <%= render 'shared/error_messages' %>
+
       <%
       	# The f variable is told to create a label
       	# and text_field for the attribute name of
