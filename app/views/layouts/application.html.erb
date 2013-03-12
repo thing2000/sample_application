@@ -29,6 +29,19 @@
   <%= render 'layouts/header' %>
   <!-- Main body of the page -->
   <div class="container">
+
+    <% 
+       # Cycle through each item in flash and assign the key and value
+       # pair into block variable.
+    %>
+    <%= flash.each do |key, value| %>
+      <%
+        # Create a div tag that contains the value of the 
+        # value key pair.
+      %>
+      <div class="alert alert- <%= key %>"><%= value %></div>
+    <% end %>
+
     <% # Renders the main html file here. %>
     <%= yield %>
     <%
