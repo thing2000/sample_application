@@ -31,6 +31,8 @@ class UsersController < ApplicationController
     
     # Attempts to save the @save object to the database.
     if @user.save
+      # Redirects to show page of the user controller
+      redirect_to @user
     
     # If if failed this code is executed.
     else
