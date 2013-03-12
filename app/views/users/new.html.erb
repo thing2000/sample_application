@@ -1,4 +1,59 @@
 <% #Declare variable title and assign it Sign up %>
 <% provide(:title, 'Sign up') %>
 <h1>Sign up</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+
+<div class="row">
+  <div class="span6 offset3">
+    
+  	<%
+  		# The form_for is a Rails helper that
+  		# takes a Active Record object such as
+  		# @user and creates a form using its attributes.
+  		# It takes the @user object and creates a block
+  		# variable f to hold that object.
+  	%>
+    <%= form_for(@user) do |f| %>
+
+      <%
+      	# The f variable is told to create a label
+      	# and text_field for the attribute name of
+      	# the @user object.
+      %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+ 	  <%
+      	# The f variable is told to create a label
+      	# and text_field for the attribute email of
+      	# the @user object.
+      %>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+ 	  <%
+      	# The f variable is told to create a label
+      	# and password_field for the attribute password of
+      	# the @user object.
+      %>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+
+       <%
+      	# The f variable is told to create a label
+      	# and password_field for the attribute password_confirmation
+      	# of the @user object.
+      %>
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation %>
+
+      <%
+      	# The f variable is told to create a submit button
+      	# with the value Create my account. It is also assigned
+      	# classes that will style it with bootstrap.
+      %>
+      <%= f.submit "Create my account", 
+      	class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
