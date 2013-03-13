@@ -39,7 +39,7 @@
         # Create a div tag that contains the value of the 
         # value key pair.
       %>
-      <div class="alert alert-<%= key %>"><%= value %></div>
+      <%= content_tag(:div, value, class: "alert alert-#{key}") %>
     <% end %>
 
     <% # Renders the main html file here. %>
