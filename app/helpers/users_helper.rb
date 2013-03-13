@@ -2,7 +2,7 @@ module UsersHelper
   # Returns the Gravatar (http://gravatar.com/) for the given user.
   # It takes in two arguments, the first being a user object and
   # second is an otional size for the image. The default is 50.
-  def gravatar_for(user, option = { size: 50 })
+  def gravatar_for(user, options = { size: 50 })
     
     # Takes user email and downcases it and converts it to a 
     # MD5 hexdigest 

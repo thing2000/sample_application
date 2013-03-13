@@ -6,7 +6,7 @@
 			<h1>
 				<% # Call mathod gravatar_for passing @user object %>
 				<% # This will return a gravatar image %>
-				<%= gravatar_for @user %>
+				<%= gravatar_for @user, size: 40 %>
 				
 				<% # User name for the header diaplay %>
 				<%= @user.name %>
