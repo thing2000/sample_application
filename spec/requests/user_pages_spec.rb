@@ -74,6 +74,23 @@ describe "UserPages" do
 			it "- Should create a user" do
 				expect { click_button submit }.to change(User, :count).by(1)
 			end
+
+			# Insure profile page is loaded with new user name
+			describe "- After saving the user" do
+				
+				# Simulate a submit button click before each test
+				before { click_button submit }
+
+				# Gets the user object from model for email address
+				let(:user) { User.find_by_email('user@example.com') }
+
+				# Test to see it page has new user name in title
+				it { should have_selector('title', text: user.name) }
+				
+				# Test to see if alert has test Welcome in it.
+				it { should have_selector('div.alert.alert-success',
+					text: 'Welcome') }
+			end
 		end
 	end
 
