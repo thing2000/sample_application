@@ -37,6 +37,23 @@ describe "UserPages" do
 				# that it has not increased.
 				expect { click_button submit }.not_to change(User, :count)
 			end
+
+			# Test that error messages are being displayed on reload
+			# of the signup page.
+			describe "- After submission" do
+				
+				# Simulates a clicking of the submit button before
+				# each test is run.
+				before { click_button submit }
+
+				# Test that the page has a title tag with the value
+				# of Sign up. 
+				it { should have_selector('title', text: 'Sign up') }
+				
+				# Test that the page has error within the content of the
+				# page indicating an error message has been generated.
+				it { should have_content('error') }
+			end
 		end
 
 		# Test that valid forms will be saved to database
