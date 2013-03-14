@@ -116,4 +116,40 @@ describe "UserPages" do
 		# populated within it.
 		it { should have_selector('title', text: user.name) }
 	end
+
+	# Test for the edit page for user information
+	describe "- Edit" do
+		
+		# Create a new object of a user
+		let(:user) { FactoryGirl.create(:user) }
+
+		# Before each test visit the edit user page
+		before { visit edit_user_path(user) }
+
+		# Tests describing what should be on edit page
+		describe "page" do
+			
+			# Edit page should have a h1 tag with Update you profile as its content
+			it { should have_selector('h1', text: "Update your profile") }
+
+			# Edit page should have a title tag with Edit user within it content
+			it { should have_selector('title', text: "Edit user") }
+
+			# Edit page should have a link that takes links you to the gravatar page
+			# to edit your gravatar
+			it { should have_link('change', href: 'http://gravatar.com/emails') }
+		end
+
+		# Test for invalid submition of edit page
+		describe "- With invalid information" do
+			
+			# Before each test click on the Save changes link
+			# to submit the invalid information
+			before { click_button "Save changes" }
+
+			# Edit page should have error apppear on it
+			# after an invalid submission.
+			it { should have_content('error') }
+		end
+	end
 end
