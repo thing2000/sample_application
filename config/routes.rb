@@ -6,7 +6,7 @@ SampleApplication::Application.routes.draw do
   # Setup the REST URIs for sessions. The only restricts
   # the REST to only new, create and destroy leaving
   # edit out as it is not needed.
-  resources :session, only: [:new, :create, :destroy]
+  resources :sessions, only: [:new, :create, :destroy]
 
   # Routes /home to the static_pages action
   # home. This loads the home.html.erb page.
