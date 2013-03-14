@@ -11,7 +11,7 @@ describe "Authentication" do
 	describe "signin page" do
 		
 		# Before each test visit the singin page
-		before { visir signin_path }
+		before { visit signin_path }
 
 		# The signin page should have a h1 tag containing the text
 		# Sign in.

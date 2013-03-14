@@ -40,10 +40,10 @@ SampleApplication::Application.routes.draw do
 
   # Routes /signup to the new action in the sessions
   # controller.
-   match '/signin', to: 'session#new'
+   match '/signin', to: 'sessions#new'
 
   # Routes /signout to the destroy action in the sessions
-  # controller. The via :delete indicates that the DELETE
+  # controller. The via: :delete indicates that the DELETE
   # HTTP request should be used for this. 
-   match '/signout', to: 'session#destroy', via :delete
+   match '/signout', to: 'sessions#destroy', via: :delete
 end
