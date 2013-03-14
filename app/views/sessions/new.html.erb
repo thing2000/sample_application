@@ -1,2 +1,30 @@
+<% # Provides Sign in to be added to title %>
 <% provide(:title, "Sign in") %>
 <h1>Sign in</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%
+    	# Create a form with url to sessions_path and
+    	# will use the POST method. The form object will
+    	# be passed into the block with the block variable
+    	# f.
+    %>
+    <%= form_for(:session, url: sessions_path) do |f| %>
+
+      <% # Add a email label and text field to form %>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <% # Add a password label and password field to the form %>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <% # Add a submit button with value of Sign in to form %>
+      <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+    <% end %>
+
+    <% # Link to signup_path to create a new user %>
+    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+  </div>
+</div>
