@@ -71,6 +71,17 @@ describe "Authentication" do
 			# There should not be a signin link on the page after successful
 			# signin has occured.
 			it { should_not have_link('Sign in', href: signin_path) }
+
+			# Insure user can log out after signing in
+			describe "- Follow by signout" do
+
+				# Clink the sign out link before each test
+				before { click_link "Sign out" }
+
+				# Insure that the link for Sign out has
+				# changed to Sign in.
+				it {should have_link('Sign in') }
+			end
 		end
 	end
 end

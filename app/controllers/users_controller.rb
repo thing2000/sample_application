@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   
   # When ever new.html.erb from users view is needed
   # the code within is execited and the page os proccessed.
+  # offers up the page of the signin.
   def new
 
     # Creates a new object of the user model and
@@ -22,6 +23,7 @@ class UsersController < ApplicationController
 
   # Called upon when a new user it to be saved/created
   # in the database. This is part of the REST architechure.
+  # Compltetes to signin process after page submit.
   def create
 
     # Creates a new @user object giving it that attributes
