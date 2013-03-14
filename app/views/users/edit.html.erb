@@ -1,0 +1,43 @@
+<% # Assigns Edit user to title for custom title on page %>
+<% provide(:title, "Edit user") %> 
+<h1>Update your profile</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <% 
+      # Create a form for users to edit their information.
+      # The form object is assigned the block variable f.
+      # Attributes from @user object will populate the form.
+    %>
+    <%= form_for(@user) do |f| %>
+      
+      <% # Render any error messages that are in flash
+      <%= render 'shared/error_messages' %>
+
+      <% # Add name label and text field to form %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <% # Add email label and text field to form %>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <% # Add password label and password field to form %>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <% # Add password_confirmation label and password field to form %>
+      <%= f.label :password_confirmation, "Confirm Password" %>
+      <%= f.password_field :password_confirmation %>
+
+      <% # Submit button with value Save changes added to form %>
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <% end %>
+
+    <% # Gravatar of the current user to be edited %>
+    <%= gravatar_for @user %>
+
+    <% # Link to edit gravatar site  with value change.%>
+    <a href="http://gravatar.com/emails">change</a>
+  </div>
+</div>
