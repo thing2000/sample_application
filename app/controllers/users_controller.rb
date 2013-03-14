@@ -32,6 +32,9 @@ class UsersController < ApplicationController
     # Attempts to save the @save object to the database.
     if @user.save
 
+      # After a successful save of the user sign them in
+      sign_in @user
+
       # Create a flash hash sucess with welcome message.
       flash[:success] = "Welcome to the Sample App!"
       # Redirects to show page of the user controller
