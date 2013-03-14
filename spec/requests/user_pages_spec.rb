@@ -171,7 +171,7 @@ describe "UserPages" do
 				fill_in "Email", with: new_email
 
 				# Fill in password with user's password
-				fill_in "Password" with: user.password
+				fill_in "Password", with: user.password
 
 				# Fill in confirm password field with user's password
 				fill_in "Confirm Password", with: user.password

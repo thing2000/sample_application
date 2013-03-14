@@ -67,6 +67,15 @@ class UsersController < ApplicationController
 
     # If update of user information is successful
     if @user.update_attributes(params[:user])
+      
+      # Create a flash message sucess
+      flash[:success] = "Profile updated"
+      
+      # Sign in the user
+      sign_in @user
+
+      # Redirect user to the profile page
+      redirect_to @user
     
     # If update of user information fails
     else

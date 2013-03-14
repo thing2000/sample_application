@@ -77,4 +77,40 @@ describe "Authentication" do
 			end
 		end
 	end
+
+	# Testing that non-sign-in users cannot access update or edit pages
+	describe "- Authorization" do
+		
+		# Test for non-signed-users
+		describe "- For non-signed-in users" do
+			
+			# Create a user object and assign it to user
+			let(:user) { FactoryGirl.create(user) }
+
+			# Test for user controller
+			describe "- In the Users controller" do
+				
+				# Insure that a visit to edit page takes non-signed-in
+				# usres back to Sign-in page.
+				describe "- Visiting the edit page" do
+
+					# Before test visit edit page passing user object
+					before { visit edit_user_path(user) }
+
+					# Test that page has title Sign in
+					it { should have_selector('title', text: 'Sign in') }
+				end
+
+				# Test that non-signed-in users cannot submit update action
+				describe "- Submitting to the update action" do
+					
+					# Simulate a submit for update
+					before { put user_path(user) }
+
+					# See if it redirects to sign in page
+					specify { response.should redirect_to(signin_path) }
+				end
+			end
+		end
+	end
 end
