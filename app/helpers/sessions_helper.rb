@@ -15,6 +15,12 @@ module SessionsHelper
 		self.current_user = user
 	end
 
+	# Test to see if current_user is set
+	def signed_in?
+		# Returns true if current_user is not(!) nil
+		!current_user.nil?
+	end
+
 	# Method for assigning user object to an instance variable
 	# @current_user. The = symbol means current_user = .. will
 	# be converted to current_user=(...)
