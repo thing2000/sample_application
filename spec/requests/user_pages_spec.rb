@@ -151,5 +151,49 @@ describe "UserPages" do
 			# after an invalid submission.
 			it { should have_content('error') }
 		end
+
+		# Test when user uses valid information
+		describe "- With valid information" do
+			
+			# Create a symbol new_name with value New Name
+			let(:new_name) { "New Name" }
+
+			# Create a symbol new_email with a value new@example.com
+			let(:new_email) { "new@example.com" }
+
+			# Execute block before each test
+			before do
+				
+				# Fillin the Name field of form with new name
+				fill_in "Name", with: new_name
+
+				# Fill in the Email field of the form with new email
+				fill_in "Email", with: new_email
+
+				# Fill in password with user's password
+				fill_in "Password" with: user.password
+
+				# Fill in confirm password field with user's password
+				fill_in "Confirm Password", with: user.password
+
+				# Click the submit button
+				click_button "Save changes"
+			end
+
+			# Page should have new_name in the title
+			it { should have_selector('title', text: new_name) }
+
+			# Page should have alert with success message in it
+			it { should have_selector('div.alert.alert-success') }
+
+			# Page should have Sign out link on page
+			it { should have_link('Sign out', href: signout_path) }
+
+			# Reload the user to confirm name has been changes to new_name
+			specify { user.reload.name.should == new_name }
+
+			# Reload the user to confirm email has been changes to new-email
+			specify { user.reload.email.should == new_email }
+		end
 	end
 end
