@@ -56,7 +56,7 @@ describe "Authentication" do
 
 			# There should be a link with the value Settings and link
 			# to the edit user page.
-			it { should have_link('Settings' href: edit_user_path)}
+			it { should have_link('Settings', href: edit_user_path(user)) }
 			
 			# There should be a link to sign out the user
 			it { should have_link('Sign out', href: signout_path) }

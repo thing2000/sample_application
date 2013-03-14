@@ -57,4 +57,22 @@ class UsersController < ApplicationController
     # object and assignes it to instance variable @user
     @user = User.find(params[:id])
   end
+
+  # Action to update user information
+  def update
+
+    # Find user in database that matches id and assign
+    # object to @user instance variable
+    @user = User.find(params[:id])
+
+    # If update of user information is successful
+    if @user.update_attributes(params[:user])
+    
+    # If update of user information fails
+    else
+      
+      # Reload edit page
+      render 'edit'
+    end
+  end
 end

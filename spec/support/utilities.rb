@@ -15,7 +15,7 @@ def sign_in(user)
 	fill_in "Password", with: user.password
 	
 	# Click the submit button to sign in
-	click_button "sign in"
+	click_button "Sign in"
 
 	# Set browser cookie remember_token to the same as token in user object
 	cookies[:remember_token] = user.remember_token

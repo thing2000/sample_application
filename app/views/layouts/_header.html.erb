@@ -47,7 +47,7 @@
                 <li><%= link_to "Profile", current_user %></li>
                 
                 <% # Link to the Settings page with stub action %>
-                <li><%= link_to "Settings", '#' %></li>
+                <li><%= link_to "Settings", edit_user_path(current_user) %></li>
                 
                 <% # Divider to seterate following link from rest of drop box %>
                 <li class="divider"></li>
