@@ -3,6 +3,11 @@ SampleApplication::Application.routes.draw do
   # Setup the REST URIs for users
   resources :users
 
+  # Setup the REST URIs for sessions. The only restricts
+  # the REST to only new, create and destroy leaving
+  # edit out as it is not needed.
+  resources :session, only: [:new, :create, :destroy]
+
   # Routes /home to the static_pages action
   # home. This loads the home.html.erb page.
   # It also creates two names routes, home_path
@@ -28,8 +33,17 @@ SampleApplication::Application.routes.draw do
    match '/contact', to: 'static_pages#contact'
 
   # Routes /signup to the new action
-  # contact. This loads the new.html.erb page.
+  # in users. This loads the new.html.erb page.
   # It also creates two names routes, signup_path
   # and signup_url.
    match '/signup', to: 'users#new'
+
+  # Routes /signup to the new action in the sessions
+  # controller.
+   match '/signin', to: 'session#new'
+
+  # Routes /signout to the destroy action in the sessions
+  # controller. The via :delete indicates that the DELETE
+  # HTTP request should be used for this. 
+   match '/signout', to: 'session#destroy', via :delete
 end
