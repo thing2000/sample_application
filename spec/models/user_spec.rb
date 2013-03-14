@@ -46,6 +46,10 @@ describe User do
 	# locate in @user object
 	it { should respond_to(:password_confirmation) }
 
+	# Test to see if there is a nattribute remember_token
+	# located in @user object
+	it { should respond_to(:remember_token) }
+
 	# Test to see is there is a attribute authenticate
 	# located in @user object.
 	it { should respond_to(:authenticate) }
