@@ -44,19 +44,8 @@ describe "Authentication" do
 			# Create a user object for use in test
 			let(:user) { FactoryGirl.create(:user) }
 
-			# Run before each test
-			before do
-				# Fill in the email with user's email to ensure
-				# it will be a valid email. Uppercase it for case
-				# insensitive databases.
-				fill_in "Email", with: user.email.upcase
-				
-				# Fill in password with user supplied password
-				fill_in "Password", with: user.password
-
-				# Click Sign in button to submit valid information
-				click_button "Sign in"
-			end
+			# Before each test call sign_in method passing in user object
+			before { sign_in user }
 
 			# Page should have user name in the title
 			it { should have_selector('title', text: user.name) }
