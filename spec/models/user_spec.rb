@@ -261,4 +261,15 @@ describe User do
 			specify { user_for_invalid_password.should be_false }
 		end
 	end
+
+	# Test the remember token 
+	describe "- Remember token" do
+		
+		# Before test save the user to the database and it the
+		# process a remember_token should be created.
+		before { @user.save }
+
+		# Test to see it token is not blank
+		its(:remember_token) { should_not be_blank }
+	end
 end

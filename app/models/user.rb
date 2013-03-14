@@ -25,6 +25,9 @@ class User < ActiveRecord::Base
   # Call back that ensures email will be lowercase
   before_save { |user| user.email = email.downcase }
 
+  # Create a remember token before user is saved to the database
+  before_save :create_remember_token
+
   # Ensures that the user object does not have
   # an empty name attribute before saving to the
   # database. Also checks that the length does not exceed
@@ -47,4 +50,15 @@ class User < ActiveRecord::Base
 
   # Ensures that password_confirmation exist and is not blank. 
   validates :password_confirmation, presence: true
+
+  # private ensures it is not visible outside class
+  private
+    
+    # method to create remember token
+    def create_remember_token
+      
+      # Create secure urlsafe_base64 token and assign it to 
+      # remember_token attribute.
+      self.remember_token = SecureRandom.urlsafe_base64
+    end
 end
