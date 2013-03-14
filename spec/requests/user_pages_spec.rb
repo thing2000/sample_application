@@ -90,6 +90,10 @@ describe "UserPages" do
 				# Test to see if alert has test Welcome in it.
 				it { should have_selector('div.alert.alert-success',
 					text: 'Welcome') }
+
+				# Test that after the new user signs up they are also
+				# signed in and have a sign out link apprear on the page
+				it { should have_link('Sign out') }
 			end
 		end
 	end
