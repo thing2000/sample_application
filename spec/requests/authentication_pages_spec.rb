@@ -25,6 +25,17 @@ describe "Authentication" do
 			# Signin page should have a error message containing text Invalid
 			# located in a div tag.
 			it { should have_selector('div.alert.alert-error', text: "Invalid") }
+
+			# Ensure error message is not persistant
+			describe "- After visiting another page" do
+				
+				# Visit home page 
+				before { click_link "Home" }
+
+				# Test to see is home page has error message on it by
+				# looking to see it error div exist.
+				it { should_not have_selector("div.alert.alert-error") }
+			end
 		end
 
 		# Test page with valid entry
