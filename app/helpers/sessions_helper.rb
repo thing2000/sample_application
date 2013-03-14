@@ -38,4 +38,15 @@ module SessionsHelper
 		# to assign to @current_user.
 		@current_user ||= User.find_by_remember_token(cookies[:remember_token])
 	end
+
+	# Helper method for signing out a user
+	def sign_out
+		
+		# Set the current_user for session to nil
+		self.current_user = nil
+
+		# Destroy cookie with hash remember_token
+		# essentially letting the browser forget the user
+		cookies.delete(:remember_token)
+	end
 end

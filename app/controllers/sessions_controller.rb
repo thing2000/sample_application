@@ -31,5 +31,11 @@ class SessionsController < ApplicationController
 	end
 
 	def destroy
+
+		# Call method to signout the user
+		sign_out
+
+		# Redirect the user to the home page
+		redirect_to root_url
 	end
 end
