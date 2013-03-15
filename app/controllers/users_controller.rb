@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   
   # Call method signed_in_user passing in signed in user
   # and that it is only for edit and update action.
-  before_filter :signed_in_user, only: [:edit, :update]
+  before_filter :signed_in_user, only: [:index, :edit, :update]
 
   # Call method correct_user to ensure that user matches the user
   # they are trying to edit.
@@ -80,6 +80,9 @@ class UsersController < ApplicationController
       
       # Reload edit page
       render 'edit'
+    end
+
+    def index
     end
   end
 

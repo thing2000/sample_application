@@ -7,6 +7,42 @@ describe "UserPages" do
 	# Lets test know that the page is the subject of the test
 	subject { page }
 
+	# Test for the index page
+	describe "- Index" do
+		
+		# Before each test
+		before do
+			
+			# Create several user objects and adds them to databse
+			sign_in FactoryGirl.create(:user)
+			FactoryGirl.create(:user, name: "Bob", email: 'bob@example.com')
+			FactoryGirl.create(:user, name: "Ben", email: "ben@example.com")
+			
+			# Visit the index page
+			visit users_path
+		end
+
+		# Page should have a title with All users in it
+		it { should have_selector('title', text: 'All users') }
+
+		# Page should have a h1 tag that will have the content
+		# of All users in it.
+		it { should have_selector('h1', text: 'All users') }
+
+		# Test to see if there is a list of users on the page
+		it "- Should list each user" do
+
+			# Query database for all users and pass them into block using
+			# block variable user.
+			User.all.each do |user|
+
+				# Test to see if the page has a list item  with user
+				# name for each user.
+				page.should have_selector('li', text: user.name)
+			end
+		end
+	end
+
 	# Describe that test is for the signup page
 	describe "- Signup page" do
 
