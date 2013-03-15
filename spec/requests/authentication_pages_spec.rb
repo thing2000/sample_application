@@ -113,4 +113,38 @@ describe "Authentication" do
 			end
 		end
 	end
+
+	# Test for user unable to edit another user profile
+	describe "- As wrong user" do
+
+		# Create a user  object and assign it to user symbol
+		let(:user) { FactoryGirl.create(:user) }
+
+		# Create a user object with custom email and assign to symbo; wrong_user
+		let(:wrong_user) { FactoryGirl.create(:user, email: "wron@example.com") }
+
+		# Before each test sign in the user
+		before { sign_in user }
+
+		# Test that user cannot visit another persons edit page.
+		describe "- Visiting User#edit page" do
+
+			# Visit the edit page using the wrong user object
+			before { visit edit_user_path(wrong_user) }
+
+			# Page should not have Edit user in the title page as it
+			# should not let the user open the edit page.
+			it { should_not have_selector('title', text: full_title('Edit user')) }
+		end
+
+		# Test that user cannot update information for another user
+		describe "- Submitting a PUT request to the User#update action" do
+			
+			# Attempt to update user with wrong user object
+			before { put user_path(wrong_user) }
+
+			# Attempt to update should cause a redirect to home page.
+			specify { response.should redirect_to(root_path) }
+		end
+	end
 end
