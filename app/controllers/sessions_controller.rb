@@ -17,8 +17,8 @@ class SessionsController < ApplicationController
 	    	# Call method sign_in passing user in a parameter to sing in the user
 	    	sign_in user
 
-	    	# Redirect to the profile page for the user
-	    	redirect_to user
+	    	# Redirect to the stored page for the user
+	    	redirect_back_to user
 	    # If authentication failes code is executed
 	    else
 	      # Flash now generated a error message that will not persist

@@ -87,9 +87,17 @@ class UsersController < ApplicationController
   private
     # Method to redirect non-signed-in users back to signin page
     def signed_in_user
-      # Redirect back to the signin url and place a notice on page unless
-      # the user is already signed in.
-      redirect_to signin_url, notice: "Please sign in." unless signed_in?
+
+      # If signed in following code will be ignored
+      unless signed_in?
+
+        # Store the location of the requested page
+        store_location
+        
+        # Redirect back to the signin url and place a notice on page unless
+        # the user is already signed in.
+        redirect_to signin_url, notice: "Please sign in." unless signed_in?
+      end
     end
 
     # Check to see if current_user matches @user object. If it does not
