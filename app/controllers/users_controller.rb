@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
   
-  # Call method before_filter passing in signed in user
+  # Call method signed_in_user passing in signed in user
   # and that it is only for edit and update action.
   before_filter :signed_in_user, only: [:edit, :update]
+
+  # Call method correct_user to ensure that user matches the user
+  # they are trying to edit.
+  before_filter :correct_user, only: [:edit, :update]
   
   # When ever new.html.erb from users view is needed
   # the code within is execited and the page os proccessed.
@@ -64,11 +68,6 @@ class UsersController < ApplicationController
 
   # Action to update user information
   def update
-
-    # Find user in database that matches id and assign
-    # object to @user instance variable
-    @user = User.find(params[:id])
-
     # If update of user information is successful
     if @user.update_attributes(params[:user])
       
@@ -96,5 +95,16 @@ class UsersController < ApplicationController
       # Redirect back to the signin url and place a notice on page unless
       # the user is already signed in.
       redirect_to signin_url, notice: "Please sign in." unless signed_in?
+    end
+
+    # Check to see if current_user matches @user object. If it does not
+    # it redirects user to home page.
+    def correct_user
+
+      # Get user object from database using the id and assignes it to @user
+      @user = User.find(params[:id])
+
+      # Redirects user to home page unless current user matches the user object.
+      redirect_to(root_path) unless current_user?(@user)
     end
 end
