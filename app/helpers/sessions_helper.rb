@@ -71,3 +71,4 @@ module SessionsHelper
 		# Stores the requested page in a session symbol return_to
 		session[:return_to] = request.url
 	end
+end

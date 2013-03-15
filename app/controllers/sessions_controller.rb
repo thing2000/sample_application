@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 	    	sign_in user
 
 	    	# Redirect to the stored page for the user
-	    	redirect_back_to user
+	    	redirect_back_or user
 	    # If authentication failes code is executed
 	    else
 	      # Flash now generated a error message that will not persist
