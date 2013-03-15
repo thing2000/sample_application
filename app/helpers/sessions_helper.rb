@@ -53,4 +53,21 @@ module SessionsHelper
 		# essentially letting the browser forget the user
 		cookies.delete(:remember_token)
 	end
-end
+
+	# Method to redirect user to another page
+	def redirect_back_or(default)
+
+		# redirects user to page stored in session symbol or the
+		# dafault location if return_ to is not set.
+		redirect_to(session[:return_to] || default)
+
+		# Deletes the session symbol return_to
+		session.delete(:return_to)
+	end
+
+	# Method to capture the url of the requested page
+	def store_location
+
+		# Stores the requested page in a session symbol return_to
+		session[:return_to] = request.url
+	end
