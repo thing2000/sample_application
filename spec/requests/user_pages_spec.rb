@@ -124,7 +124,13 @@ describe "UserPages" do
 		let(:user) { FactoryGirl.create(:user) }
 
 		# Before each test visit the edit user page
-		before { visit edit_user_path(user) }
+		before do
+			# Sign in the user
+			sign_in user
+
+			# Visit the edit page for the user
+			visit edit_user_path(user)
+		end
 
 		# Tests describing what should be on edit page
 		describe "page" do

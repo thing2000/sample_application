@@ -85,7 +85,7 @@ describe "Authentication" do
 		describe "- For non-signed-in users" do
 			
 			# Create a user object and assign it to user
-			let(:user) { FactoryGirl.create(user) }
+			let(:user) { FactoryGirl.create(:user) }
 
 			# Test for user controller
 			describe "- In the Users controller" do
