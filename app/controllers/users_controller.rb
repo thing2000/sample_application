@@ -59,11 +59,6 @@ class UsersController < ApplicationController
 
   # Action that loads the edit user page
   def edit
-
-    # Finds user in database that matches the id
-    # supplied in the id hash. It them create an user
-    # object and assignes it to instance variable @user
-    @user = User.find(params[:id])
   end
 
   # Action to update user information

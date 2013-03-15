@@ -87,6 +87,40 @@ describe "Authentication" do
 			# Create a user object and assign it to user
 			let(:user) { FactoryGirl.create(:user) }
 
+			# Test for when user visited a protected page when not-signed-in 
+			describe "- When attempting to visit a protected page" do
+				
+				# Do before each test
+				before do
+					
+					# Visit to the edit page and should be redirected 
+					# to sign in page.
+					visit edit_user_path(user)
+					
+					# Fill in the email form on the signin page
+					fill_in "Email", with: user.email
+					
+					# Fill in the password form on the signin page
+					fill_in "Password", with: user.password
+					
+					# Submit form for authentication
+					click_button "Sign in"
+				end
+
+				# Describes what should happen after successfully signin in
+				describe "- After signing in" do
+
+					# Test that the protected page the user was trying to access
+					# is being rendered after sign in.
+					it "- Should render the desired protected page" do
+						
+						# Test that the title contains Edit user. This was the 
+						# protected page the test was trying to load.
+						page.should have_selector('title', text: 'Edit user')
+					end
+				end
+			end
+
 			# Test for user controller
 			describe "- In the Users controller" do
 				
