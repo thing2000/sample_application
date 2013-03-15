@@ -145,6 +145,18 @@ describe "Authentication" do
 					specify { response.should redirect_to(signin_path) }
 				end
 			end
+
+			# Test for the site index wile not signed-in
+			describe "- Visiting the user index" do
+
+				# Visit the user_path
+				before { visit user_path }
+
+				# The title of the page should have signin in it. This is
+				# because the user was recirected to the signin page to
+				# sign-in before accessing the index page.
+				it { should have_selector('title', text: 'Sign in') }
+			end
 		end
 	end
 
