@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
   
+  # Call method before_filter passing in signed in user
+  # and that it is only for edit and update action.
+  before_filter :signed_in_user, only: [:edit, :update]
+  
   # When ever new.html.erb from users view is needed
   # the code within is execited and the page os proccessed.
   # offers up the page of the signin.
@@ -84,4 +88,13 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+
+  # Only visivle in controller
+  private
+    # Method to redirect non-signed-in users back to signin page
+    def signed_in_user
+      # Redirect back to the signin url and place a notice on page unless
+      # the user is already signed in.
+      redirect_to signin_url, notice: "Please sign in." unless signed_in?
+    end
 end
