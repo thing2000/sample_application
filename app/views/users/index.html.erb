@@ -1,0 +1,19 @@
+<% provide(:title, 'All users') %>
+<h1>All users</h1>
+
+<ul class="users">
+  <% 
+  	# Cycle through each user in @user object and pass them
+  	# into a block variable user
+  %>
+  <% @users.each do |user| %>
+    <li>
+      
+      <% # Create gravatar image with custom size of 52 %>
+      <%= gravatar_for user, size: 52 %>
+
+      <% # Create a link with the value of user name and link to user %>
+      <%= link_to user.name, user %>
+    </li>
+  <% end %>
+</ul>

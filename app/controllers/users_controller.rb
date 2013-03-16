@@ -82,7 +82,11 @@ class UsersController < ApplicationController
       render 'edit'
     end
 
+    # Action for index page
     def index
+
+      # Put all users in a instance variable @user
+      @user = User.all
     end
   end
 
