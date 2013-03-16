@@ -153,7 +153,7 @@ describe "Authentication" do
 			describe "- Visiting the user index" do
 
 				# Visit the user_path
-				before { visit user_path }
+				before { visit users_path }
 
 				# The title of the page should have signin in it. This is
 				# because the user was recirected to the signin page to

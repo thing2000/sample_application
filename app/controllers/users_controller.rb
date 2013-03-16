@@ -81,13 +81,13 @@ class UsersController < ApplicationController
       # Reload edit page
       render 'edit'
     end
+  end
 
-    # Action for index page
-    def index
+  # Action for index page
+  def index
 
-      # Put all users in a instance variable @user
-      @user = User.all
-    end
+    # Put all users in a instance variable @user
+    @users = User.all
   end
 
   # Only visivle in controller
