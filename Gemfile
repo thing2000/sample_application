@@ -15,6 +15,9 @@ gem 'bootstrap-sass', '2.1'
 # Gemfile for encrypting password to create password hash
 gem 'bcrypt-ruby', '3.0.1'
 
+# Gem to help gemerate users
+gem 'faker', '1.0.1'
+
 # Group that is only used when in
 # development and test environments
 group :development, :test do
