@@ -32,6 +32,9 @@
           <% # If user is signed %>
           <% if signed_in? %>
             
+            <% # Link to index page %>
+            <li><%= link_to "Users", user_path %></li>
+
             <% # Create a dropdown box %>
             <li id="fat-menu" class="dropdown">
               
