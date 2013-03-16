@@ -49,6 +49,9 @@ describe "Authentication" do
 
 			# Page should have user name in the title
 			it { should have_selector('title', text: user.name) }
+
+			# Page should have a link to index page
+			it { should have_link('User', href: users_path) }
 			
 			# There should be a link to profile page with link to
 			# user's profile page
