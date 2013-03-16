@@ -18,6 +18,12 @@ gem 'bcrypt-ruby', '3.0.1'
 # Gem to help gemerate users
 gem 'faker', '1.0.1'
 
+# Gem to create page breaks such as 30 or 60 users per page
+gem 'will_paginate', '3.0.3'
+
+# Gem to let will_paginate work with bootstrap
+gem 'bootstrap-will_paginate', '0.0.6'
+
 # Group that is only used when in
 # development and test environments
 group :development, :test do
