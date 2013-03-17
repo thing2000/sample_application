@@ -13,6 +13,10 @@ class Micropost < ActiveRecord::Base
   
   # Attributes that will be editable by outside
   attr_accessible :content
+
+  # Tells rails that micropost have a belongs to relationship to the user
+  belongs_to :user_id
+
   # Insures presence ot user_id
   validates :user_id, presence: true
 

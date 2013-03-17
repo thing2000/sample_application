@@ -56,6 +56,9 @@ describe User do
 	# located in @user object.
 	it { should respond_to(:authenticate) }
 
+	# Test to insure that @user object has microposts attribute
+	it { should respond_to(:microposts) }
+
 	# Test that @user object has the admin attribute
 	it { should respond_to(:admin) }
 
