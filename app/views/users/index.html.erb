@@ -1,22 +1,15 @@
 <% provide(:title, 'All users') %>
 <h1>All users</h1>
 
+<% # Used to break long list of users into pages of 30 %>
+<%= will_paginate %>
+
 <ul class="users">
   <% 
   	# Cycle through each user in @user object and pass them
   	# into a block variable user
   %>
   <% @users.each do |user| %>
-    <li>
-      
-      <% # Create gravatar image with custom size of 52 %>
-      <%= gravatar_for user, size: 52 %>
-
-      <% # Create a link with the value of user name and link to user %>
-      <%= link_to user.name, user %>
-    </li>
+   <%= render @users %>
   <% end %>
 </ul>
-
-<% # Break users into pages %>
-<%= will_paginate %>
