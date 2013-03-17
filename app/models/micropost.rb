@@ -20,4 +20,6 @@ class Micropost < ActiveRecord::Base
   # Insures presence ot user_id
   validates :user_id, presence: true
 
+  default_scope order: 'microposts.created_at DESC'
+
 end

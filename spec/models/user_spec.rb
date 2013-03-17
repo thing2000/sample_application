@@ -307,8 +307,29 @@ describe User do
 			FactoryGirl.create(:micropost, user: @user, create_at: 1.hour.ago)
 		end
 
+		# Test that the order is descending
 		it "- Should have the right microposts in the rignt opder" do
 			@user.micropost.should == [newer_micropost, older_micropost]
+		end
+
+		# Test that when user is destroyed so it theri micropost
+		it "- Should destroy associated microposts" do
+			
+			# Duplicate users micropost
+			microposts = @user.microposts.dup
+			
+			# Destroy the user
+			@user.destroy
+
+			# Ensure micropost duplication is will there
+			microposts.should_not be_empty
+
+			# Cycle through array of microposts
+			microposts.each do |micropost|
+
+				# Insure that the user_id is nil after user deleted
+				Micropost.find_by_id(micropost.id).should be_nil
+			end
 		end
 	end
 end
