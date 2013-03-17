@@ -10,5 +10,10 @@
 #
 
 class Micropost < ActiveRecord::Base
-  attr_accessible :content, :user_id
+  
+  # Attributes that will be editable by outside
+  attr_accessible :content
+  # Insures presence ot user_id
+  validates :user_id, presence: true
+
 end

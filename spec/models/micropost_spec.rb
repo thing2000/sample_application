@@ -17,21 +17,22 @@ describe Micropost do
   # Create a new user object and assign to symbol user
   let(:user) { FactoryGirl.create(:user) }
   
-  # Before each of the following test
-  before do
-    # This code is wrong!
-    @micropost = Micropost.new(content: "Lorem ipsum", user_id: user.id)
-  end
+  # Before each of the following test create a micropost object
+  before { @micropost = user.microposts.build(content: "Lorem ipsum") }
 
-  # Tells test that @micropost will be the subject of the test
+  # Tells rails that micropost is the subject of the test
   subject { @micropost }
 
-  # Test that content is a attribute in the micropost table
+  # @micropost should have cotent attribute
   it { should respond_to(:content) }
 
-  # Test that user_id is a attribut in the micropost table
+  # @micropost should have user_id as attribute 
   it { should respond_to(:user_id) }
 
+  # The user tied to the micropost should be the same and the user created
+  it { should respond_to(:user) }
+  its(:user) { should == user }
+ 
   # Test for missing user_id
   describe "- When user_id is not present" do
     
@@ -40,6 +41,23 @@ describe Micropost do
 
     # Insure that @micropost is no a valid object any longer
     it { should_not be_valid }
+  end
+
+  # Test for acessible attributes
+  describe "- Accessible attributes" do
+
+    # Test for access to user_id should be denied
+    it "- Should not allow access to user_id" do
+      
+      # What to expect
+      expect do
+
+        # Try to manually set user_id
+        Micropost.new(user_id: user.id)
+
+      # Should throw an error
+      end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
+    end
   end
 end
 
