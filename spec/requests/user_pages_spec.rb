@@ -10,14 +10,15 @@ describe "UserPages" do
 	# Test for the index page
 	describe "- Index" do
 		
-		# Before each test
-		before do
+		# Create a user object and asign it the variable user
+		let(:user) { FactoryGirl.create(:user) }
+
+		# Before each test go through block of code
+		before(:each) do
 			
-			# Create several user objects and adds them to databse
-			sign_in FactoryGirl.create(:user)
-			FactoryGirl.create(:user, name: "Bob", email: 'bob@example.com')
-			FactoryGirl.create(:user, name: "Ben", email: "ben@example.com")
-			
+			# Sign in the user using user object
+			sign_in user
+
 			# Visit the index page
 			visit users_path
 		end
@@ -29,16 +30,29 @@ describe "UserPages" do
 		# of All users in it.
 		it { should have_selector('h1', text: 'All users') }
 
-		# Test to see if there is a list of users on the page
-		it "- Should list each user" do
+		
+		# Test for pagination existance on page
+		describe "- Pagination" do
+			
+			# Generate 30 users for the test
+			before(:all) { 30.times { FactoryGirl.create(:user) } }
 
-			# Query database for all users and pass them into block using
-			# block variable user.
-			User.all.each do |user|
+			# Remove the users generated for the tast
+			after(:all) { User.delete_all }
 
-				# Test to see if the page has a list item  with user
-				# name for each user.
-				page.should have_selector('li', text: user.name)
+			# Page should hav div pagination
+			it { should have_selector('div.pagination') }
+
+			# Test that pagination contains list item with user name
+			it "- Should list each user" do
+
+				# Cycle through each user
+				User.paginate(page: 1).each do |user|
+
+					# Ensure that each user will have li with the user name
+					# in it.
+					page.should have_selector('li', text: user.name)
+				end
 			end
 		end
 	end

@@ -87,7 +87,7 @@ class UsersController < ApplicationController
   def index
 
     # Put all users in a instance variable @user
-    @users = User.all
+    @users = User.paginate(page: params[:page])
   end
 
   # Only visivle in controller
