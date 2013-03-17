@@ -298,18 +298,18 @@ describe User do
 		before { @user.save }
 		
 		# Create a micropost for one day ago
-		let!(:order_micropost) do
-			FactoryGirl.create(:micropost, user: @user, create_at: 1.day.ago)
+		let!(:older_micropost) do
+			FactoryGirl.create(:micropost, user: @user, created_at: 1.day.ago)
 		end
 
 		# Create a micropost for on hour ago
 		let!(:newer_micropost) do
-			FactoryGirl.create(:micropost, user: @user, create_at: 1.hour.ago)
+			FactoryGirl.create(:micropost, user: @user, created_at: 1.hour.ago)
 		end
 
 		# Test that the order is descending
 		it "- Should have the right microposts in the rignt opder" do
-			@user.micropost.should == [newer_micropost, older_micropost]
+			@user.microposts.should == [newer_micropost, older_micropost]
 		end
 
 		# Test that when user is destroyed so it theri micropost

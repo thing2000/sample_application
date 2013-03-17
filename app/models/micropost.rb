@@ -17,6 +17,9 @@ class Micropost < ActiveRecord::Base
   # Tells rails that micropost have a belongs to relationship to the user
   belongs_to :user
 
+  # Insure that the content must be present but not over 140 charaters
+  validates :content, presence: true, length: { maximum: 140 }
+
   # Insures presence ot user_id
   validates :user_id, presence: true
 

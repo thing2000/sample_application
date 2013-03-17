@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   # Tells rails that users have a has_many relationship to microposts
-  has_many :microposts
+  has_many :microposts, dependent: :destroy
 
   # Call back that ensures email will be lowercase
   before_save { |user| user.email = email.downcase }

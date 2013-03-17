@@ -43,6 +43,18 @@ describe Micropost do
     it { should_not be_valid }
   end
 
+  # Test that a blank micropost will not be valid
+  describe "- With blank content" do
+    before { @micropost.content = " " }
+    it { should_not be_valid }
+  end
+
+  # Test that content cannot be over 140 characters
+  describe "- With content that is too long" do
+    before { @micropost.cotent = "a" * 141 }
+    it { should_not be_valid }
+  end
+
   # Test for acessible attributes
   describe "- Accessible attributes" do
 
