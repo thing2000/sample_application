@@ -117,4 +117,12 @@ class UsersController < ApplicationController
       # Redirects user to home page unless current user matches the user object.
       redirect_to(root_path) unless current_user?(@user)
     end
+
+    def destroy
+      User.find(params[:id]).destroy
+
+      flash[:success] = "User destroyed."
+      
+      redirect_to users_path
+    end
 end

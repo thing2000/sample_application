@@ -6,7 +6,7 @@ namespace :db do
     
     # Create a user with preset variables and assign
     # it to the variable admin.
-    admin.create!(name: "Example User",
+    admin = User.create!(name: "Example User",
                  email: "example@railstutorial.org",
                  password: "foobar",
                  password_confirmation: "foobar")

@@ -161,6 +161,18 @@ describe "Authentication" do
 				it { should have_selector('title', text: 'Sign in') }
 			end
 		end
+
+		describe "- As non-admin user" do
+			let(:user) { FactoryGirl.create(:user) }
+			let(:non_admin) { FactoryGirl.create(:user) }
+
+			before { sign_in non_admin }
+
+			describe "- Submitting a DELETE request to the User#destroy action" do
+				before { delete user_path(user) }
+				sepcify { response.should redirect_to(root_path) }
+			end
+		end
 	end
 
 	# Test for user unable to edit another user profile

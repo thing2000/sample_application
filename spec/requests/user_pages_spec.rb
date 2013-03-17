@@ -55,6 +55,42 @@ describe "UserPages" do
 				end
 			end
 		end
+
+		# Test to insure that delete user works 
+		describe "- Delete links" do
+			
+			# Test that normal user cannot see delete link
+			it { should_not have_link('delete') }
+
+			# Test to see if delete for an user that is a admin
+			describe "- As an admin user" do
+				
+				# Create a user that is a admin
+				let(:admin) { FactoryGirl.create(:admin) }
+				
+				# Do before each test
+				before do
+					
+					# Sign in the user
+					sign_in admin
+
+					# Visit the index page
+					visit users_path
+				end
+
+				# User should see the delete link
+				it { should have_link('delete', href: user_path(User.first)) }
+				
+				# after delete link is pressed number of users in databasae
+				# should be on less.
+				it "- Should be able to delete another user" do
+					expect { click_link('delete') }. to change(User, :count).by(-1)
+				end
+				
+				# Profile for admin on index page should not have a delete link
+				it { should_not have_link('delete', href: user_path(admin)) }
+			end
+		end
 	end
 
 	# Describe that test is for the signup page

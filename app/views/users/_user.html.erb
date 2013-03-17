@@ -1,4 +1,18 @@
 <li>
-	<%= gravatar_for user, size: 52 %>
+
+	<% # Get gravatar image with size 52 %>
+	<%= gravatar for user, size: 52 %>
+
+	<% # Create a link with value of user name %>
 	<%= link_to user.name, user %>
+
+	<% 
+		# Test to see if user is of admin type and the profile
+	   	# being generated is not their own.
+	%>
+	<% if current_user.admin? && !current_user?(user) %>
+		<% # If true generate link to delete profile %>
+		| <%= link to "delete", user, method: :delete, 
+			data: { confirm: "You sure?" } %>
+	<% end %>
 </li>
