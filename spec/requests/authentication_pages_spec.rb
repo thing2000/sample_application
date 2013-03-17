@@ -162,15 +162,26 @@ describe "Authentication" do
 			end
 		end
 
+		# Test non-admin user
 		describe "- As non-admin user" do
+			
+			# Create a user object witch will be a admin
 			let(:user) { FactoryGirl.create(:user) }
+
+			# Create another user object that will be a non-admin
 			let(:non_admin) { FactoryGirl.create(:user) }
 
+			# Sign in the non-admin user
 			before { sign_in non_admin }
 
+			# Test that the non-admin user cannot send delete request
 			describe "- Submitting a DELETE request to the User#destroy action" do
+				
+				# Send delete request to delete admin user
 				before { delete user_path(user) }
-				sepcify { response.should redirect_to(root_path) }
+
+				# insure that non-admin user was redirected to homepage
+				specify { response.should redirect_to(root_path) }
 			end
 		end
 	end

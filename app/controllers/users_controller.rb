@@ -7,6 +7,9 @@ class UsersController < ApplicationController
   # Call method correct_user to ensure that user matches the user
   # they are trying to edit.
   before_filter :correct_user, only: [:edit, :update]
+
+  # Filter to insure non-admin user cannot delete another user
+  before_filter :admin_user, only: :destroy
   
   # When ever new.html.erb from users view is needed
   # the code within is execited and the page os proccessed.
@@ -90,6 +93,14 @@ class UsersController < ApplicationController
     @users = User.paginate(page: params[:page])
   end
 
+  def destroy
+      User.find(params[:id]).destroy
+
+      flash[:success] = "User destroyed."
+      
+      redirect_to users_path
+    end
+
   # Only visivle in controller
   private
     # Method to redirect non-signed-in users back to signin page
@@ -118,11 +129,11 @@ class UsersController < ApplicationController
       redirect_to(root_path) unless current_user?(@user)
     end
 
-    def destroy
-      User.find(params[:id]).destroy
+    # Before filter that ensured that is non-admin tries to delete it redirects
+    # them to homepage.
+    def admin_user
 
-      flash[:success] = "User destroyed."
-      
-      redirect_to users_path
+      # Test if user is not admin than it redirects to homepage.
+      redirect_to(root_path) unless current_user.admin?
     end
 end

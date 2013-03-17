@@ -1,7 +1,7 @@
 <li>
 
 	<% # Get gravatar image with size 52 %>
-	<%= gravatar for user, size: 52 %>
+	<%= gravatar_for user, size: 52 %>
 
 	<% # Create a link with value of user name %>
 	<%= link_to user.name, user %>
@@ -12,7 +12,7 @@
 	%>
 	<% if current_user.admin? && !current_user?(user) %>
 		<% # If true generate link to delete profile %>
-		| <%= link to "delete", user, method: :delete, 
+		| <%= link_to "delete", user, method: :delete, 
 			data: { confirm: "You sure?" } %>
 	<% end %>
 </li>
