@@ -15,7 +15,7 @@ class Micropost < ActiveRecord::Base
   attr_accessible :content
 
   # Tells rails that micropost have a belongs to relationship to the user
-  belongs_to :user_id
+  belongs_to :user
 
   # Insures presence ot user_id
   validates :user_id, presence: true

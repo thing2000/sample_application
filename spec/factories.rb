@@ -15,4 +15,11 @@ FactoryGirl.define do
 			admin true
 		end
 	end
+
+	
+	# Create a micropost for testing
+	factory :micropost do
+		content "Lorem ipsum"
+		user
+	end
 end
