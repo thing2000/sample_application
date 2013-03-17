@@ -291,4 +291,24 @@ describe User do
 		# Test to see it token is not blank
 		its(:remember_token) { should_not be_blank }
 	end
+
+	describe "- Micropost associations" do
+		
+		# Save @user to the database
+		before { @user.save }
+		
+		# Create a micropost for one day ago
+		let!(:order_micropost) do
+			FactoryGirl.create(:micropost, user: @user, create_at: 1.day.ago)
+		end
+
+		# Create a micropost for on hour ago
+		let!(:newer_micropost) do
+			FactoryGirl.create(:micropost, user: @user, create_at: 1.hour.ago)
+		end
+
+		it "- Should have the right microposts in the rignt opder" do
+			@user.micropost.should == [newer_micropost, older_micropost]
+		end
+	end
 end
