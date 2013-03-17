@@ -9,6 +9,7 @@
 #  updated_at      :datetime         not null
 #  password_digest :string(255)
 #  remember_token  :string(255)
+#  admin           :boolean          default(FALSE)
 #
 
 # Gives file access to spec_helper 
@@ -55,9 +56,24 @@ describe User do
 	# located in @user object.
 	it { should respond_to(:authenticate) }
 
+	# Test that @user object has the admin attribute
+	it { should respond_to(:admin) }
+
 	# Test that the current state of the @user object
 	# is valid
 	it { should be_valid }
+
+	# Test tht the default state of admin is false
+	it { should_not be_admin }
+
+	describe "- With admin attribute set to 'true'" do
+		before do
+			@user.save!
+			@user.toggle!(:admin)
+		end
+
+		it { should be_admin }
+	end
 
 	# Test to ensure that when the name attribute 
 	# is blank it will not be valid to save to the
