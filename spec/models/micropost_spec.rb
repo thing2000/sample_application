@@ -51,7 +51,7 @@ describe Micropost do
 
   # Test that content cannot be over 140 characters
   describe "- With content that is too long" do
-    before { @micropost.cotent = "a" * 141 }
+    before { @micropost.content = "a" * 141 }
     it { should_not be_valid }
   end
 

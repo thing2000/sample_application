@@ -191,10 +191,10 @@ describe "UserPages" do
 		let(:user) { FactoryGirl.create(:user) }
 
 		# Create a micropost with content Foo to user created for test
-		let!(:m1) { FactoryGirl.create(:micropost, user, content: "Foo") }
+		let!(:m1) { FactoryGirl.create(:micropost, user: user, content: "Foo") }
 
 		# Create a micropost with content Bar to user created for test
-		let!(:m2) { FactoryGirl.create(:micropost, user, content: "Bar") }
+		let!(:m2) { FactoryGirl.create(:micropost, user: user, content: "Bar") }
 
 		# Before each test visit user_path route passing in
 		# user variable as parameter.
@@ -218,7 +218,7 @@ describe "UserPages" do
 			it { should have_content(m2.content) }
 
 			# Test that there is micropost count
-			it { should have_content(user.micropost.count) }
+			it { should have_content(user.microposts.count) }
 		end
 	end
 
