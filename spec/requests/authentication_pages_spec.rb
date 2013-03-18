@@ -168,7 +168,7 @@ describe "Authentication" do
 				describe "- Submitting to the create action" do
 					
 					# Submit post request to create micropost
-					before { post micropost_path }
+					before { post microposts_path }
 
 					# Should be redirected to signin page
 					specify { response.should redirect_to(signin_path) }
