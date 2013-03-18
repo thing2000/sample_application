@@ -59,6 +59,9 @@ describe User do
 	# Test to insure that @user object has microposts attribute
 	it { should respond_to(:microposts) }
 
+	# Test to see if @user object contains feed attribute
+	it { should respnd to(:feed) }
+
 	# Test that @user object has the admin attribute
 	it { should respond_to(:admin) }
 
@@ -330,6 +333,21 @@ describe User do
 				# Insure that the user_id is nil after user deleted
 				Micropost.find_by_id(micropost.id).should be_nil
 			end
+		end
+
+		# Test what micropost are being displayed
+		describe "- Status" do
+
+			# Get micropost for user and assign to symbol unfollowed_post
+			let(:unfollowed_post) do
+				FactoryGirl.create(:micropost, user: FactoryGirl.create(:user))
+			end
+
+			# Test that micropost includes post for current user 
+			# but not post for unfollowed users.
+			its(:feed) { should include(newer_micropost) }
+			its(:feed) { should include(older_micropost) }
+			its(:feed) { should_not include(unfollowed_post) }
 		end
 	end
 end
