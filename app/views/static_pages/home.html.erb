@@ -1,14 +1,18 @@
+<% # If user is signed in execute following code %>
 <% if signed_in? %>
   <div class="row">
     <aside class="span4">
       <section>
+        <% # Render a partial _user_infor in the shared folder %>
         <%= render 'shared/user_info' %>
       </section>
       <section>
+        <% # Render a partial _micropost_form in the shared folder %>
         <%= render 'shared/micropost_form' %>
       </section>
     </aside>
-  </div>  
+  </div> 
+<% # If user is not logged in %> 
 <% else %>
   <% # The div will be placed inside the applicatin %>
   <% # layout template to make complete page. %> 
