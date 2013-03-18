@@ -55,6 +55,11 @@ class User < ActiveRecord::Base
   # Ensures that password_confirmation exist and is not blank. 
   validates :password_confirmation, presence: true
 
+  def feed
+    # Returns all micropost for the user id
+    Micropost.where("user_id = ?", id)
+  end
+
   # private ensures it is not visible outside class
   private
     
