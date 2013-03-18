@@ -49,6 +49,38 @@ describe "Static pages" do
 		# Test looks at home page and ensures that it does not
 		# contail a custom title.
 		it { should_not have_selector 'title', text: '| Home' }
+
+		describe "- For signed-in users"
+
+			# Create a user to be used in the test
+			let(:user) { FactoryGirl.create(:user) }
+			
+			# Do before each test
+			before do
+
+				# Create two micropost for the test
+				FactoryGirl.create(:micropost, user: user, content: "Lorem ipsum")
+				FactoryGirl.create(:micropost, user: user, content: "Dolor sit amet")
+				
+				# Signin the user
+				sign_in user
+
+				# Visit the homepage
+				visit root_path
+
+				# Test that feeds for user are on homepage
+				it "- Should render the user's feed" do
+					
+					# Cycle through feeds array for user pass them into
+					# block variable item.
+					user.feed.each do |item|
+
+						# Test that page should have li with content of feed micropost
+						page.should have_selector("li##{item.id}", text: item.content)
+					end
+				end
+			end
+		end
 	end
 
 	# Describe that help page is being tested.
