@@ -30,6 +30,9 @@ class UsersController < ApplicationController
     # the params hash sent by the page through the
     # GET method.
   	@user = User.find(params[:id])
+
+    # Load all the micropost for the user into a variable @microposts
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
 
   # Called upon when a new user it to be saved/created
