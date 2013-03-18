@@ -13,4 +13,20 @@
 			</h1>
 		</section>
 	</aside>
+	<div class="span8">
+		<% # Test if there is any micropost to display %>
+    	<% if @user.microposts.any? %>
+      		<% # Count the number of micropost %>
+      		<h3>Microposts (<%= @user.microposts.count %>)</h3>
+      		<ol class="microposts">
+        		<% # Render micropost using partial %>
+        		<%= render @microposts %>
+      		</ol>
+     	 	<% 
+     	 		# Break micropost into different pages it there are a large 
+     	 		# number. 
+     	 	%>
+     	 	<%= will_paginate @microposts %>
+    	<% end %>
+  </div>
 </div>

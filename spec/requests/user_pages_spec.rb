@@ -190,6 +190,12 @@ describe "UserPages" do
 		# Create a user factory and assign it to user variable
 		let(:user) { FactoryGirl.create(:user) }
 
+		# Create a micropost with content Foo to user created for test
+		let!(:m1) { FactoryGirl.create(:micropost, user, content: "Foo") }
+
+		# Create a micropost with content Bar to user created for test
+		let!(:m2) { FactoryGirl.create(:micropost, user, content: "Bar") }
+
 		# Before each test visit user_path route passing in
 		# user variable as parameter.
 		before { visit user_path(user) }
@@ -201,6 +207,19 @@ describe "UserPages" do
 		# Test that the page has a title tag with the users name
 		# populated within it.
 		it { should have_selector('title', text: user.name) }
+
+		# Test for micropost
+		describe "- Microposts" do
+
+			# Test that m1 has content
+			it { should have_content(m1.content) }
+
+			# Test that m2 has content
+			it { should have_content(m2.content) }
+
+			# Test that there is micropost count
+			it { should have_content(user.micropost.count) }
+		end
 	end
 
 	# Test for the edit page for user information
