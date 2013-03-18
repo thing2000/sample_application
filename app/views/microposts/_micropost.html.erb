@@ -1,0 +1,8 @@
+<li>
+  <% # Display the content of micropost %>
+  <span class="content"><%= micropost.content %></span>
+  <span class="timestamp">
+    <% # Display time created converted into words %>
+    Posted <%= time_ago_in_words(micropost.created_at) %> ago.
+  </span>
+</li>
