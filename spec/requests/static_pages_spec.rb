@@ -50,7 +50,7 @@ describe "Static pages" do
 		# contail a custom title.
 		it { should_not have_selector 'title', text: '| Home' }
 
-		describe "- For signed-in users"
+		describe "- For signed-in users" do
 
 			# Create a user to be used in the test
 			let(:user) { FactoryGirl.create(:user) }
@@ -138,18 +138,18 @@ describe "Static pages" do
 		it_should_behave_like "all static pages"
 	end
 
-it "should have the right links on the layout" do
-    visit root_path
-    click_link "About"
-    page.should have_selector 'title', text: full_title('About Us')
-    click_link "Help"
-    page.should have_selector 'title', text: full_title('Help')
-    click_link "Contact"
-    page.should have_selector 'title', text: full_title('Contact')
-    click_link "Home"
-    click_link "Sign up now!"
-    page.should have_selector 'title', text: full_title('Sign up')
-    click_link "sample app"
-    page.should have_selector 'title', text: full_title('')
-  end
+	it "should have the right links on the layout" do
+		visit root_path
+		click_link "About"
+		page.should have_selector 'title', text: full_title('About Us')
+		click_link "Help"
+		page.should have_selector 'title', text: full_title('Help')
+		click_link "Contact"
+		page.should have_selector 'title', text: full_title('Contact')
+		click_link "Home"
+		click_link "Sign up now!"
+		page.should have_selector 'title', text: full_title('Sign up')
+		click_link "sample app"
+		page.should have_selector 'title', text: full_title('')
+	end
 end

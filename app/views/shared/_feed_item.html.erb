@@ -1,0 +1,19 @@
+<% # Create li with id of feed_item %>
+<li id="<%= feed_item.id %>">
+  
+  <% # Create gravatat for user that belongs to micropost %>
+  <%= link_to gravatar_for(feed_item.user), feed_item.user %>
+  <span class="user">
+    
+    <% # Create a link to user that blongs to micropost %>
+    <%= link_to feed_item.user.name, feed_item.user %>
+  </span>
+
+  <% # Create span containing the content of the micropost %>
+  <span class="content"><%= feed_item.content %></span>
+  <span class="timestamp">
+
+  	<% # Create span with time since post was created %>
+    Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
+  </span>
+</li>

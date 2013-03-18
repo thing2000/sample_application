@@ -60,7 +60,7 @@ describe User do
 	it { should respond_to(:microposts) }
 
 	# Test to see if @user object contains feed attribute
-	it { should respnd to(:feed) }
+	it { should respond_to(:feed) }
 
 	# Test that @user object has the admin attribute
 	it { should respond_to(:admin) }
