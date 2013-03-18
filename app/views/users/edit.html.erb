@@ -12,7 +12,7 @@
     <%= form_for(@user) do |f| %>
       
       <% # Render any error messages that are in flash %>
-      <%= render 'shared/error_messages' %>
+      <%= render 'shared/error_messages', object: f.object %>
 
       <% # Add name label and text field to form %>
       <%= f.label :name %>
@@ -35,7 +35,7 @@
     <% end %>
 
     <% # Gravatar of the current user to be edited %>
-    <%= gravatar_for @user %>
+    <%= gravatar_for(@user) %>
 
     <% # Link to edit gravatar site  with value change.%>
     <a href="http://gravatar.com/emails">change</a>

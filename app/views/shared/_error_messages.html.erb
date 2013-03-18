@@ -1,14 +1,14 @@
-<% # Check for any errors in the @user object. If so,
+<% # Check for any errors in the object passed in. If so,
    # execute the code within.
 %>
-<% if @user.errors.any? %>
+<% if object.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-error">
       <% # Counts the number of errors there is and using the
          # pluralize method adds error for one and errors for
          # greater than one.
       %>
-      The form contains <%= pluralize(@user.errors.count, "error") %>.
+      The form contains <%= pluralize(object.errors.count, "error") %>.
     </div>
     <ul>
     <%
@@ -16,7 +16,7 @@
       # each full_message and sending it into the block
       # as the msg block variable.
     %>
-    <% @user.errors.full_messages.each do |msg| %>
+    <% object.errors.full_messages.each do |msg| %>
       <% # Create a list item for each error message %>
       <li>* <%= msg %></li>
     <% end %>

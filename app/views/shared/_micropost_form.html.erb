@@ -1,7 +1,14 @@
+<% 
+	# Create a form with micropost object and assign form to block
+	# variable f
+%>
 <%= form_for(@micropost) do |f| %>
+  <% # Render error_messages partial sending it hash with object of f %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
+  	<% # Add text area to form and place placeholder %>
     <%= f.text_area :content, placeholder: "Compose new micropost..." %>
   </div>
+  <% # Add a submit button to the form with method of POST %>
   <%= f.submit "Post", class: "btn btn-large btn-primary" %>
 <% end %>
