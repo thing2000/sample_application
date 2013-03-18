@@ -8,6 +8,10 @@ SampleApplication::Application.routes.draw do
   # edit out as it is not needed.
   resources :sessions, only: [:new, :create, :destroy]
 
+  # Setup the REST UIRs for microposts but only for
+  # create and destroy.  
+  resources :microposts, only: [:create, :destroy]
+
   # Routes /home to the static_pages action
   # home. This loads the home.html.erb page.
   # It also creates two names routes, home_path

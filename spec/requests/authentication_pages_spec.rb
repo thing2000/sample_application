@@ -160,6 +160,30 @@ describe "Authentication" do
 				# sign-in before accessing the index page.
 				it { should have_selector('title', text: 'Sign in') }
 			end
+
+			# Test for the micropost controller
+			describe "- In the Microposts controller" do
+				
+				# Test action when attempting to create micropost
+				describe "- Submitting to the create action" do
+					
+					# Submit post request to create micropost
+					before { post micropost_path }
+
+					# Should be redirected to signin page
+					specify { response.should redirect_to(signin_path) }
+				end
+
+				# Test action for destroying a micropost
+				describe "- Submitting to the destroy action" do
+
+					# Submit a delete request
+					before { delete micropost_path(FactoryGirl.create(:micropost)) }
+					
+					# Should be redirected to signin page
+					specify { response.should redirect_to(signin_path) }
+				end
+			end
 		end
 
 		# Test non-admin user

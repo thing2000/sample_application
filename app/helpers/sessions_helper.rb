@@ -43,6 +43,20 @@ module SessionsHelper
 		user == current_user
 	end
 
+	# If user is not signed in they are redirected to signin page
+	def signed_in_user
+
+		# If check to see if user is signed in
+    	unless signed_in?
+
+    		# Store the last the requested action and store it
+      		store_location
+
+      		# Redirect to the signin url with notice to signin
+      		redirect_to signin_url, notice: "Please sign in."
+    	end
+  	end
+
 	# Helper method for signing out a user
 	def sign_out
 		
