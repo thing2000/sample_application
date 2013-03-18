@@ -54,4 +54,25 @@ describe "Micropost pages" do
       end
     end
   end
+
+  # Test for destruction of micropost
+  describe "- Micropost destruction" do
+    
+    # Create a micropost for test
+    before { FactoryGirl.create(:micropost, user: user) }
+
+    # Test that right user can delete micropost
+    describe "- As correct user" do
+      
+      # Before test visit homepage
+      before { visit root_path }
+
+      # Insure deletion of micropose
+      it "- Should delete a micropost" do
+        
+        # Click delete and count micropost to see if there is one less
+        expect { click_link "delete" }.to change(Micropost, :count).by(-1)
+      end
+    end
+  end
 end
