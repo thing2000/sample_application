@@ -74,8 +74,7 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
   def feed
-    # Returns all micropost for the user id
-    Micropost.where("user_id = ?", id)
+    Micropost.from_users_followed_by(self)
   end
 
   # Checks to see if user to be followed exist in database
