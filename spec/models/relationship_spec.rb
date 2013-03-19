@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: relationships
+#
+#  id          :integer          not null, primary key
+#  follower_id :integer
+#  followed_id :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 require 'spec_helper'
 
 describe Relationship do
@@ -30,5 +41,22 @@ describe Relationship do
       # Should raise an error
       end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
     end    
+  end
+
+  # Test that relationships has follower and followed
+  describe "- Follower methods" do
+
+    # Test that relationship has follower    
+    it { should respond_to(:follower) }
+
+    # Test that relationship has followed
+    it { should respond_to(:followed) }
+
+    # Insure that follower was assigned to object correctly
+    its(:follower) { should == follower }
+
+
+    # Insure that followed was assigned to object correctly
+    its(:followed) { should == followed }
   end
 end

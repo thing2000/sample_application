@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
   # Tells rails that users have a has_many relationship to microposts
   has_many :microposts, dependent: :destroy
 
+  # Tells rails that users has a foreign key relation ship with relationship's
+  # follower_id. If user is destroyed then the relationship goes with it.
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+
   # Call back that ensures email will be lowercase
   before_save { |user| user.email = email.downcase }
 
