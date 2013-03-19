@@ -17,6 +17,9 @@ SampleApplication::Application.routes.draw do
   # create and destroy.  
   resources :microposts, only: [:create, :destroy]
 
+  # Creates a create and destroy route for relationships
+  resources :relationships, only: [:create, :destroy]
+
   # Routes /home to the static_pages action
   # home. This loads the home.html.erb page.
   # It also creates two names routes, home_path

@@ -1,0 +1,14 @@
+<% 
+	# Page creates link to either follow or unfollow
+	# @user depending of if current_user is already following
+	# @user of not. If they are the same no link if generated.
+%> 
+<% unless current_user?(@user) %>
+  <div id="follow_form">
+  <% if current_user.following?(@user) %>
+    <%= render 'unfollow' %>
+  <% else %>
+    <%= render 'follow' %>
+  <% end %>
+  </div>
+<% end %>

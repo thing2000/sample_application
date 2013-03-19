@@ -67,19 +67,43 @@ describe "Static pages" do
 
 				# Visit the homepage
 				visit root_path
+			end
 
-				# Test that feeds for user are on homepage
-				it "- Should render the user's feed" do
-					
-					# Cycle through feeds array for user pass them into
-					# block variable item.
-					user.feed.each do |item|
+			# Test that feeds for user are on homepage
+			it "- Should render the user's feed" do
+				
+				# Cycle through feeds array for user pass them into
+				# block variable item.
+				user.feed.each do |item|
 
-						# Test that page should have li with content of feed micropost
-						page.should have_selector("li##{item.id}", text: item.content)
-					end
+					# Test that page should have li with content of feed micropost
+					page.should have_selector("li##{item.id}", text: item.content)
 				end
 			end
+
+			# Test that count for following and followers work
+			describe "follower/following counts" do
+		        
+				# Create a user for test
+		        let(:other_user) { FactoryGirl.create(:user) }
+		        
+		        before do
+		          
+		          # Other_user now follow user
+		          other_user.follow!(user)
+		          
+		          # Visit homepage
+		          visit root_path
+		        end
+
+		        # User should have link showing 0 following and a link to the
+				# the users following page
+		        it { should have_link("0 following", href: following_user_path(user)) }
+		        
+		        # User should have link showing 1 followed and a link to the
+				# the users followed page
+		        it { should have_link("1 followers", href: followers_user_path(user)) }
+      		end
 		end
 	end
 

@@ -12,8 +12,16 @@
 				<%= @user.name %>
 			</h1>
 		</section>
+		<section>
+			<% # Renders the following/followed stats %>
+			<%= render 'shared/stats' %>
+		</section>
 	</aside>
 	<div class="span8">
+
+		<% # Renders a follow button to create relationship with user %>
+		<%= render 'follow_form' if signed_in? %>
+		
 		<% # Test if there is any micropost to display %>
     	<% if @user.microposts.any? %>
       		<% # Count the number of micropost %>

@@ -1,0 +1,8 @@
+<%
+	# Create a form that has a hidden field with the followed_id
+	# and a submit button to follow the user
+%>
+<%= form_for(current_user.relationships.build(followed_id: @user.id)) do |f| %>
+  <div><%= f.hidden_field :followed_id %></div>
+  <%= f.submit "Follow", class: "btn btn-large btn-primary" %>
+<% end %>
