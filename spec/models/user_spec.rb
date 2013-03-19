@@ -68,6 +68,12 @@ describe User do
 	# Test that the @user object has followed_users as a attribute
 	it { should respond_to(:followed_users) }
 
+	# Test to see if one user is following another
+	it { should respond_to(:following?) }
+	
+	# Exception will be raised if follow is not an attribute
+	it { should respond_to(:follow!) }
+
 	# Test that @user object has the admin attribute
 	it { should respond_to(:admin) }
 
@@ -356,4 +362,26 @@ describe User do
 			its(:feed) { should_not include(unfollowed_post) }
 		end
 	end
+
+  # Test to see if following works
+  describe "- Following" do
+    
+  	# Create a user object
+    let(:other_user) { FactoryGirl.create(:user) }    
+    
+    # Before each test
+    before do
+      # Save user to database
+      @user.save
+
+      # Have user follow other_user. Through exception if it fails.
+      @user.follow!(other_user)
+    end
+
+    # Insure user is following other_user
+    it { should be_following(other_user) }
+
+    # Test that in followed_users column other_uer it there
+    its(:followed_users) { should include(other_user) }
+  end
 end

@@ -68,6 +68,16 @@ class User < ActiveRecord::Base
     Micropost.where("user_id = ?", id)
   end
 
+  # Checks to see if user to be followed exist in database
+  def following?(other_user)
+    relationships.find_by_followed_id(other_user.id)
+  end
+
+  # Creates a relationship between followed and follows
+  def follow!(other_user)
+    relationships.create!(followed_id: other_user.id)
+  end
+
   # private ensures it is not visible outside class
   private
     
