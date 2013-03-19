@@ -62,6 +62,9 @@ describe User do
 	# Test to see if @user object contains feed attribute
 	it { should respond_to(:feed) }
 
+	# Test that the @user object has relationships as a attribute
+	it { should respond_to(:relationships) }
+
 	# Test that @user object has the admin attribute
 	it { should respond_to(:admin) }
 
