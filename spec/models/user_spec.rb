@@ -71,8 +71,11 @@ describe User do
 	# Test to see if one user is following another
 	it { should respond_to(:following?) }
 	
-	# Exception will be raised if follow is not an attribute
+	# Exception will be raised if follow is not an action
 	it { should respond_to(:follow!) }
+
+	# Should have unfollow action 	
+  	it { should respond_to(:unfollow!) }
 
 	# Test that @user object has the admin attribute
 	it { should respond_to(:admin) }
@@ -383,5 +386,18 @@ describe User do
 
     # Test that in followed_users column other_uer it there
     its(:followed_users) { should include(other_user) }
+
+    # Test that user can unfollow another user
+    describe "- And unfollowing" do
+      
+      # User unfollows other_user
+      before { @user.unfollow!(other_user) }
+
+      # User should now not be following other_user
+      it { should_not be_following(other_user) }
+      
+      # Test that user is not on other_user followed list
+      its(:followed_users) { should_not include(other_user) }
+    end
   end
 end
