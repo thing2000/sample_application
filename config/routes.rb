@@ -1,7 +1,12 @@
 SampleApplication::Application.routes.draw do
 
   # Setup the REST URIs for users
-  resources :users
+  resources :users do
+    member do
+      # pages for viewing user followers and users they follow
+      get :following, :followers
+    end
+  end
 
   # Setup the REST URIs for sessions. The only restricts
   # the REST to only new, create and destroy leaving
