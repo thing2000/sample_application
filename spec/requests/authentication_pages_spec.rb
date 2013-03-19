@@ -147,6 +147,20 @@ describe "Authentication" do
 					# See if it redirects to sign in page
 					specify { response.should redirect_to(signin_path) }
 				end
+
+				# Test that user needs to be signed in before visiting
+				# their following page.
+				describe "visiting the following page" do
+		          before { visit following_user_path(user) }
+		          it { should have_selector('title', text: 'Sign in') }
+		        end
+
+		        # Test that user needs to be signed in before visiting
+				# their followers page. 
+		        describe "visiting the followers page" do
+		          before { visit followers_user_path(user) }
+		          it { should have_selector('title', text: 'Sign in') }
+		        end
 			end
 
 			# Test for the site index wile not signed-in
@@ -160,6 +174,18 @@ describe "Authentication" do
 				# sign-in before accessing the index page.
 				it { should have_selector('title', text: 'Sign in') }
 			end
+
+			describe "in the Relationships controller" do
+        		describe "submitting to the create action" do
+          			before { post relationships_path }
+          			specify { response.should redirect_to(signin_path) }
+        		end
+
+        		describe "submitting to the destroy action" do
+          			before { delete relationship_path(1) }
+          			specify { response.should redirect_to(signin_path) }          
+        		end
+      		end
 
 			# Test for the micropost controller
 			describe "- In the Microposts controller" do

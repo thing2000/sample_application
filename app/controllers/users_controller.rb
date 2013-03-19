@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   
-  # Call method signed_in_user passing in signed in user
-  # and that it is only for edit and update action.
-  before_filter :signed_in_user, only: [:index, :edit, :update]
+  # Call method signed_in_user passing in signed in user.
+  before_filter :signed_in_user, 
+                only: [:index, :edit, :update, :destroy, :following, :followers]
 
   # Call method correct_user to ensure that user matches the user
   # they are trying to edit.
@@ -103,6 +103,20 @@ class UsersController < ApplicationController
       
       redirect_to users_path
     end
+
+  def following
+    @title = "Following"
+    @user = User.find(params[:id])
+    @users = @user.followed_users.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
 
   # Only visivle in controller
   private
