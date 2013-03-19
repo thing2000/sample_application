@@ -68,6 +68,12 @@ describe User do
 	# Test that the @user object has followed_users as a attribute
 	it { should respond_to(:followed_users) }
 
+	# Test for a relationship that is opposite to that of relationship
+	it { should respond_to(:reverse_relationships) }
+  	
+  	# Test for attribute followers
+  	it { should respond_to(:followers) }
+
 	# Test to see if one user is following another
 	it { should respond_to(:following?) }
 	
@@ -386,6 +392,13 @@ describe User do
 
     # Test that in followed_users column other_uer it there
     its(:followed_users) { should include(other_user) }
+
+	# Test for followed user but uses other user as subject
+	# instead of @user
+	describe "- Followed user" do
+      subject { other_user }
+      its(:followers) { should include(@user) }
+    end
 
     # Test that user can unfollow another user
     describe "- And unfollowing" do

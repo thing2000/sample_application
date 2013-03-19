@@ -34,6 +34,16 @@ class User < ActiveRecord::Base
   # that the relationship is through followed.
   has_many :followed_users, through: :relationships, source: :followed
 
+  # Create a virtual table that reversed the relationship key
+  # structure making followed_id the foreign key
+  has_many :reverse_relationships, foreign_key: "followed_id",
+                                   class_name:  "Relationship",
+                                   dependent:   :destroy
+
+  # Creates a relationship with follower and following through the
+  # virtual table reverse_relationship.
+  has_many :followers, through: :reverse_relationships, source: :follower
+
   # Call back that ensures email will be lowercase
   before_save { |user| user.email = email.downcase }
 
