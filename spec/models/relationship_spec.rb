@@ -59,4 +59,14 @@ describe Relationship do
     # Insure that followed was assigned to object correctly
     its(:followed) { should == followed }
   end
+
+  describe "- When followed id is not present" do
+    before { relationship.followed_id = nil }
+    it { should_not be_valid }
+  end
+
+  describe "- When follower id is not present" do
+    before { relationship.follower_id = nil }
+    it { should_not be_valid }
+  end
 end
