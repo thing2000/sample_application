@@ -65,6 +65,9 @@ describe User do
 	# Test that the @user object has relationships as a attribute
 	it { should respond_to(:relationships) }
 
+	# Test that the @user object has followed_users as a attribute
+	it { should respond_to(:followed_users) }
+
 	# Test that @user object has the admin attribute
 	it { should respond_to(:admin) }
 

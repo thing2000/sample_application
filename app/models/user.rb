@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
   # follower_id. If user is destroyed then the relationship goes with it.
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
 
+  # Replace default name followeds to followed_users, and tells rails
+  # that the relationship is through followed.
+  has_many :followed_users, through: :relationships, source: :followed
+
   # Call back that ensures email will be lowercase
   before_save { |user| user.email = email.downcase }
 
